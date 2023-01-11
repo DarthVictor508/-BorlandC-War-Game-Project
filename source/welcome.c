@@ -1,15 +1,19 @@
 #include "welcome.h"
 
+/********************
+ç”¨äºå±•ç¤ºå¼€å§‹ç•Œé¢
+lzzå†™çš„
+********************/
 int welcome(char *s){
 	cleardevice();
 	setbkcolor(WHITE);
 	setfillstyle(SOLID_FILL,WHITE);
 	bar(0,0,640,480);
-	puthz(195+15,300+5,"¶áµº¾üÑİ",48,60,RED);
+	puthz(195+15,300+5,"å¤ºå²›å†›æ¼”",48,60,RED);
 	putbmp(195,0,"source\\picture\\logo.bmp");
 	setfillstyle(SOLID_FILL,BLUE);
 	bar(240,375,240+40*4,375+40);
-	puthz(240+5,375+5,"¿ªÊ¼ÓÎÏ·",32,40,BLACK);
+	puthz(240+5,375+5,"å¼€å§‹æ¸¸æˆ",32,40,BLACK);
 	clrmous(MouseX,MouseY);
 	delay(1000);
 	while(1){
@@ -28,8 +32,8 @@ int welcome(char *s){
 	setfillstyle(SOLID_FILL,WHITE);
 	bar(0,0,640,480);
 	putbmp(110,0,"source\\picture\\ougen3.bmp");
-	puthz(10,360,"ÄãµÄÃØÊé½¢",32,40,BLACK);
-	puthz(20,405,"àÅ£¿Äã¾ÍÊÇĞÂÀ´µÄÖ¸»Ó¹ÙÂğ£¿",24,30,BLACK);
+	puthz(10,360,"ä½ çš„ç§˜ä¹¦èˆ°",32,40,BLACK);
+	puthz(20,405,"å—¯ï¼Ÿä½ å°±æ˜¯æ–°æ¥çš„æŒ‡æŒ¥å®˜å—ï¼Ÿ",24,30,BLACK);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
@@ -42,8 +46,8 @@ int welcome(char *s){
 	clrmous(MouseX,MouseY);
 	delay(100);
 	bar(0,360,640,480);
-	puthz(10,360,"Å·¸ù",32,40,BLACK);
-	puthz(20,405,"ÄãºÃ£¬ÎÒÊÇÄãµÄÃØÊé½¢Å·¸ù¡£",24,30,BLACK);
+	puthz(10,360,"æ¬§æ ¹",32,40,BLACK);
+	puthz(20,405,"ä½ å¥½ï¼Œæˆ‘æ˜¯ä½ çš„ç§˜ä¹¦èˆ°æ¬§æ ¹ã€‚",24,30,BLACK);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
@@ -56,7 +60,7 @@ int welcome(char *s){
 	clrmous(MouseX,MouseY);
 	delay(100);
 	bar(0,405,640,480);
-	puthz(20,405,"½ÓÏÂÀ´µÄ¶áµº×÷Õ½¾Í°İÍĞÄãÀ´Ö¸»ÓÁË¡£",24,30,BLACK);
+	puthz(20,405,"æ¥ä¸‹æ¥çš„å¤ºå²›ä½œæˆ˜å°±æ‹œæ‰˜ä½ æ¥æŒ‡æŒ¥äº†ã€‚",24,30,BLACK);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
@@ -69,7 +73,7 @@ int welcome(char *s){
 	clrmous(MouseX,MouseY);
 	delay(100);
 	bar(0,405,640,480);
-	puthz(20,405,"ÄÇÃ´£¬¿ÉÒÔÏÈ¸æËßÎÒÄãµÄÃû×ÖÂğ£¿",24,30,BLACK);
+	puthz(20,405,"é‚£ä¹ˆï¼Œå¯ä»¥å…ˆå‘Šè¯‰æˆ‘ä½ çš„åå­—å—ï¼Ÿ",24,30,BLACK);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
@@ -82,7 +86,7 @@ int welcome(char *s){
 	clrmous(MouseX,MouseY);
 	delay(100);
 	bar(0,360,640,480);
-	puthz(20,380,"ÊäÈëÄãµÄÃû×Ö£º",24,30,BLACK);
+	puthz(20,380,"è¾“å…¥ä½ çš„åå­—ï¼š",24,30,BLACK);
 	setfillstyle(SOLID_FILL,LIGHTGRAY);
 	bar(230,380,620,405);
 	while(1){
@@ -103,8 +107,8 @@ int welcome(char *s){
 	
 	setfillstyle(SOLID_FILL,WHITE);
 	bar(0,360,640,480);
-	puthz(10,360,"Å·¸ù",32,40,BLACK);
-	puthz(20,405,"ßí£¬ÓĞÈ¤µÄÃû×Ö¡£ÎÒ¼Ç×¡ÁË¡£",24,30,BLACK);
+	puthz(10,360,"æ¬§æ ¹",32,40,BLACK);
+	puthz(20,405,"å””ï¼Œæœ‰è¶£çš„åå­—ã€‚æˆ‘è®°ä½äº†ã€‚",24,30,BLACK);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
@@ -117,22 +121,24 @@ int welcome(char *s){
 	clrmous(MouseX,MouseY);
 	delay(100);
 	bar(0,405,640,480);
-	puthz(20,405,"½ÓÏÂÀ´¡­¡­ĞèÒªÎÒ½Ì¸øÄãÔõÑùÖ¸»ÓÕ½¶·Âğ£¿",24,30,BLACK);
+	puthz(20,405,"æ¥ä¸‹æ¥â€¦â€¦éœ€è¦æˆ‘æ•™ç»™ä½ æ€æ ·æŒ‡æŒ¥æˆ˜æ–—å—ï¼Ÿ",24,30,BLACK);
 	setfillstyle(SOLID_FILL,BLUE);
 	bar(20,440,185,465);
-	puthz(20+5,440+5,"ÊÇµÄ£¬ÎÒĞèÒª½Ì³Ì",16,20,WHITE);
+	puthz(20+5,440+5,"æ˜¯çš„ï¼Œæˆ‘éœ€è¦æ•™ç¨‹",16,20,WHITE);
 	setfillstyle(SOLID_FILL,RED);
 	bar(195,440,360,465);
-	puthz(195+5,440+5,"²»ĞèÒªÁË£¬Ğ»Ğ»Äã",16,20,WHITE);
+	puthz(195+5,440+5,"ä¸éœ€è¦äº†ï¼Œè°¢è°¢ä½ ",16,20,WHITE);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
 		if(mouse_press(20,440,185,465)==1){
 			delay(100);
+			cleardevice();
 			return 1;
 		}
 		if(mouse_press(195,440,360,465)==1){
 			delay(100);
+			cleardevice();
 			return 0;
 		}
 	}
