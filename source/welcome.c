@@ -1,0 +1,139 @@
+#include "welcome.h"
+
+int welcome(char *s){
+	cleardevice();
+	setbkcolor(WHITE);
+	setfillstyle(SOLID_FILL,WHITE);
+	bar(0,0,640,480);
+	puthz(195+15,300+5,"夺岛军演",48,60,RED);
+	putbmp(195,0,"source\\picture\\logo.bmp");
+	setfillstyle(SOLID_FILL,BLUE);
+	bar(240,375,240+40*4,375+40);
+	puthz(240+5,375+5,"开始游戏",32,40,BLACK);
+	clrmous(MouseX,MouseY);
+	delay(1000);
+	while(1){
+		newmouse(&MouseX,&MouseY,&press);
+		mouse(MouseX,MouseY);
+		if(mouse_press(240,375,240+40*4,375+40)==1){
+			delay(100);
+			break;
+		}
+	}
+	
+	clrmous(MouseX,MouseY);
+	delay(100);
+	cleardevice();
+	setbkcolor(BLACK);
+	setfillstyle(SOLID_FILL,WHITE);
+	bar(0,0,640,480);
+	putbmp(110,0,"source\\picture\\ougen3.bmp");
+	puthz(10,360,"你的秘书舰",32,40,BLACK);
+	puthz(20,405,"嗯？你就是新来的指挥官吗？",24,30,BLACK);
+	while(1){
+		newmouse(&MouseX,&MouseY,&press);
+		mouse(MouseX,MouseY);
+		if(mouse_press(0,0,640,480)==1){
+			delay(100);
+			break;
+		}
+	}
+	
+	clrmous(MouseX,MouseY);
+	delay(100);
+	bar(0,360,640,480);
+	puthz(10,360,"欧根",32,40,BLACK);
+	puthz(20,405,"你好，我是你的秘书舰欧根。",24,30,BLACK);
+	while(1){
+		newmouse(&MouseX,&MouseY,&press);
+		mouse(MouseX,MouseY);
+		if(mouse_press(0,0,640,480)==1){
+			delay(100);
+			break;
+		}
+	}
+	
+	clrmous(MouseX,MouseY);
+	delay(100);
+	bar(0,405,640,480);
+	puthz(20,405,"接下来的夺岛作战就拜托你来指挥了。",24,30,BLACK);
+	while(1){
+		newmouse(&MouseX,&MouseY,&press);
+		mouse(MouseX,MouseY);
+		if(mouse_press(0,0,640,480)==1){
+			delay(100);
+			break;
+		}
+	}
+	
+	clrmous(MouseX,MouseY);
+	delay(100);
+	bar(0,405,640,480);
+	puthz(20,405,"那么，可以先告诉我你的名字吗？",24,30,BLACK);
+	while(1){
+		newmouse(&MouseX,&MouseY,&press);
+		mouse(MouseX,MouseY);
+		if(mouse_press(0,0,640,480)==1){
+			delay(100);
+			break;
+		}
+	}
+	
+	clrmous(MouseX,MouseY);
+	delay(100);
+	bar(0,360,640,480);
+	puthz(20,380,"输入你的名字：",24,30,BLACK);
+	setfillstyle(SOLID_FILL,LIGHTGRAY);
+	bar(230,380,620,405);
+	while(1){
+		newmouse(&MouseX,&MouseY,&press);
+		mouse(MouseX,MouseY);
+		if(mouse_press(230,380,620,465)==1){
+			delay(100);
+			break;
+		}
+	}
+	
+	clrmous(MouseX,MouseY);
+	delay(100);
+	setfillstyle(SOLID_FILL,BLACK);
+	bar(230,380,620,405);
+	gotoxy(30,25);
+	scanf("%s",s);
+	
+	setfillstyle(SOLID_FILL,WHITE);
+	bar(0,360,640,480);
+	puthz(10,360,"欧根",32,40,BLACK);
+	puthz(20,405,"唔，有趣的名字。我记住了。",24,30,BLACK);
+	while(1){
+		newmouse(&MouseX,&MouseY,&press);
+		mouse(MouseX,MouseY);
+		if(mouse_press(0,0,640,480)==1){
+			delay(100);
+			break;
+		}
+	}
+	
+	clrmous(MouseX,MouseY);
+	delay(100);
+	bar(0,405,640,480);
+	puthz(20,405,"接下来……需要我教给你怎样指挥战斗吗？",24,30,BLACK);
+	setfillstyle(SOLID_FILL,BLUE);
+	bar(20,440,185,465);
+	puthz(20+5,440+5,"是的，我需要教程",16,20,WHITE);
+	setfillstyle(SOLID_FILL,RED);
+	bar(195,440,360,465);
+	puthz(195+5,440+5,"不需要了，谢谢你",16,20,WHITE);
+	while(1){
+		newmouse(&MouseX,&MouseY,&press);
+		mouse(MouseX,MouseY);
+		if(mouse_press(20,440,185,465)==1){
+			delay(100);
+			return 1;
+		}
+		if(mouse_press(195,440,360,465)==1){
+			delay(100);
+			return 0;
+		}
+	}
+}
