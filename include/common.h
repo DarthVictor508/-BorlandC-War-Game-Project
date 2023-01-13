@@ -16,7 +16,7 @@ struct unit{
 	int num; //战斗单位编号，指在数组里的下标
 	int hp; //剩余血量
 	int oil; //剩余资源
-	int x,y; //位置
+	int x[25],y[25]; //位置
 	int max_move; //最大移动距离
 	int atk; //攻击力（打一次对面掉多少血）
 };
