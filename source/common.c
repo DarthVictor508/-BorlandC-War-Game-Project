@@ -173,3 +173,16 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int *num_m
 		en[3].max_move=0;
 		en[3].max_attack=0;
 }		
+
+/********************
+用于根据鼠标的位置判断所在格子
+其中形参中的x，y传格子坐标储存位置
+返回值是0表示该格子上部，返回值是1表示该格子下部
+lzz写的
+********************/
+int get_block(int MouX,int MouY,int *x,int *y){
+	*x=MouX/40+1;
+	*y=MouY/40+1;
+	if(MouY%40>=1&&MouY%40<=20) return 0;
+	return 1;
+}
