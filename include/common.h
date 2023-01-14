@@ -9,6 +9,7 @@
 #include<mouse.h>
 #include<hz.h>
 #include<putbmp.h>
+#include<string.h>
 
 struct unit{
 	char name[10]; //战斗单位名称（中文）
