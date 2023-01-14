@@ -19,7 +19,12 @@ struct unit{
 	int oil; //剩余资源
 	int x[25],y[25]; //位置
 	int max_move; //最大移动距离
+	int max_attack; //最大打击距离
 	int atk; //攻击力（打一次对面掉多少血）
+	//以下是一些关于运输船的参数
+	int ported[25]; //表示单位是否被运输，0表示未被运输，1表示被运输，被运输时在地图上不显示
+	int port_type; //仅运输船会用到的参数，表示运输物的兵种
+	int port_num; //仅运输船会用到的参数，表示运输物在该兵种中的标号
 };
 
 int get_dis(struct unit a,struct unit b);
