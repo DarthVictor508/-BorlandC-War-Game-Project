@@ -15,8 +15,8 @@ struct unit{
 	char name[10]; //战斗单位名称（中文）
 	int type; //战斗单位类型，统一编码，比如坦克是0等等
 	int num; //战斗单位编号，指在数组里的下标
-	int hp; //剩余血量
-	int oil; //剩余资源
+	int hp[25]; //剩余血量
+	int oil[25]; //剩余资源
 	int x[25],y[25]; //位置
 	int max_move; //最大移动距离
 	int max_attack; //最大打击距离
