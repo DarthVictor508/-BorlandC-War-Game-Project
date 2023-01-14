@@ -8,6 +8,6 @@ lzz建立项目并上传文件，common和welcome有了一些修改，要不你�
 1. lpc更新common系列，添加了初始化函数。
 # 1.13
 1. lzz在common系列里新增一个函数```get_block```，用于根据鼠标的像素位置判断鼠标位于哪个格子，以及是格子的上半还是下半。
-# 1.13
-lpc更改common.h中位置坐标的类型，并在common.c中更新了```init```，增加了初始化敌方位置的信息，删除了```init```中的形参 my_num和en_num，新增函数```print_en```,打印敌方单位。
-
+2. lpc更改common.h中位置坐标的类型，并在common.c中更新了```init```，增加了初始化敌方位置的信息，删除了```init```中的形参 my_num和en_num，新增函数```print_en```,打印敌方单位。
+# 1.14
+1. lzz发现自己需要进行字符串操作但是之前忘了在```common.h```里调用string库，所以在```common.h```里面加上了```#include<string.h>```
