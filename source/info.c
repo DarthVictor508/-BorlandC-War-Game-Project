@@ -1,99 +1,102 @@
 #include"info.h"
 
 /********************
-ÓÃÓÚÔÚÓÒ²àĞÅÏ¢À¸´òÓ¡µĞ·½»ØºÏĞÅÏ¢
-lzzĞ´µÄ
+ç”¨äºåœ¨å³ä¾§ä¿¡æ¯æ æ‰“å°æ•Œæ–¹å›åˆä¿¡æ¯
+lzzå†™çš„
 ********************/
 void en_turn(){
 	setfillstyle(SOLID_FILL,BLACK);
 	bar(524,0,640,480);
-	puthz(540,0,"µĞ·½»ØºÏ",16,20,WHITE);
+	puthz(540,0,"æ•Œæ–¹å›åˆ",16,20,WHITE);
 	setfillstyle(SOLID_FILL,RED);
 	bar(524,21,640,23);
-	puthz(535,28,"Äú²»ÄÜ",24,30,WHITE);
-	puthz(550,60,"ĞĞ¶¯",24,30,WHITE);
+	puthz(535,28,"æ‚¨ä¸èƒ½",24,30,WHITE);
+	puthz(550,60,"è¡ŒåŠ¨",24,30,WHITE);
 }
 
 /********************
-ÓÃÓÚÔÚÓÒ²àĞÅÏ¢À¸´òÓ¡¼º·½»ØºÏĞÅÏ¢
-lzzĞ´µÄ
+ç”¨äºåœ¨å³ä¾§ä¿¡æ¯æ æ‰“å°å·±æ–¹å›åˆä¿¡æ¯
+lzzå†™çš„
 ********************/
 void my_turn(){
 	setfillstyle(SOLID_FILL,BLACK);
 	bar(524,0,640,480);
-	puthz(540,0,"ÎÒµÄ»ØºÏ",16,20,WHITE);
+	puthz(540,0,"æˆ‘çš„å›åˆ",16,20,WHITE);
 	setfillstyle(SOLID_FILL,RED);
 	bar(525,21,640,23);
-	puthz(539,28,"ÇëÑ¡Ôñ",24,30,WHITE);
-	puthz(524,60,"Òª²é¿´µÄ",24,30,WHITE);
-	puthz(554,92,"µ¥Î»",24,30,WHITE);
+	puthz(539,28,"è¯·é€‰æ‹©",24,30,WHITE);
+	puthz(524,60,"è¦æŸ¥çœ‹çš„",24,30,WHITE);
+	puthz(554,92,"å•ä½",24,30,WHITE);
 	setfillstyle(SOLID_FILL,GREEN);
 	bar(528,448,636,474);
-	puthz(542,454,"½áÊø»ØºÏ",16,20,WHITE);
+	puthz(542,454,"ç»“æŸå›åˆ",16,20,WHITE);
 }
 
 /********************
-ÓÃÓÚÔÚÓÒ²àĞÅÏ¢À¸´òÓ¡Ä³Ò»×÷Õ½µ¥Î»ĞÅÏ¢
-ĞÎ²Înum±íÊ¾Êä³ö¸Ã±øÖÖÖĞµÄµÚ¼¸¸öµ¥Î»
-ĞÎ²ÎopÊÇ0±íÊ¾ÊÇ¼º·½µ¥Î»£¬ÊÇ1±íÊ¾ÊÇµĞ·½µ¥Î»
-lzzĞ´µÄ
+ç”¨äºåœ¨å³ä¾§ä¿¡æ¯æ æ‰“å°æŸä¸€ä½œæˆ˜å•ä½ä¿¡æ¯
+å½¢å‚numè¡¨ç¤ºè¾“å‡ºè¯¥å…µç§ä¸­çš„ç¬¬å‡ ä¸ªå•ä½
+å½¢å‚opæ˜¯0è¡¨ç¤ºæ˜¯å·±æ–¹å•ä½ï¼Œæ˜¯1è¡¨ç¤ºæ˜¯æ•Œæ–¹å•ä½
+å½¢å‚buttè¡¨ç¤ºæ˜¯å¦æ‰“å°ä¸‹æ–¹æŒ‰é’®ï¼Œ1è¡¨ç¤ºæ‰“å°
+lzzå†™çš„
 ********************/
-void info(struct unit x,int num,int op,struct unit my[]){
+void info(struct unit x,int num,int op,struct unit my[],int butt){
 	setfillstyle(SOLID_FILL,BLACK);
 	bar(524,0,640,480);
-	puthz(540,0,"ÎÒµÄ»ØºÏ",16,20,WHITE);
+	puthz(540,0,"æˆ‘çš„å›åˆ",16,20,WHITE);
 	setfillstyle(SOLID_FILL,RED);
 	bar(525,21,640,23);
-	if(op==0) puthz(524,28,"ÎÒ·½µ¥Î»",24,30,WHITE);
-	else puthz(524,28,"µĞ·½µ¥Î»",24,30,WHITE);
-	if(op==0&&x.type==4) puthz(537,60,x.name,24,30,WHITE);//ÔËÊä´¬Ãû×Ö³¤Èı¸ö×Ö
-	else puthz(552,60,x.name,24,30,WHITE);//ÆäËûµ¥Î»Ãû×Ö³¤2¸ö×Ö
+	if(op==0) puthz(524,28,"æˆ‘æ–¹å•ä½",24,30,WHITE);
+	else puthz(524,28,"æ•Œæ–¹å•ä½",24,30,WHITE);
+	if(op==0&&(x.type==4||x.type==5)) puthz(537,60,x.name,24,30,WHITE);//è¿è¾“èˆ¹å’Œæ”¯æ´å…µåå­—é•¿ä¸‰ä¸ªå­—
+	else puthz(552,60,x.name,24,30,WHITE);//å…¶ä»–å•ä½åå­—é•¿2ä¸ªå­—
 	
-	puthz(525,93,"Ê£ÓàÑªÁ¿£º",16,17,WHITE);
+	puthz(525,93,"å‰©ä½™è¡€é‡ï¼š",16,17,WHITE);
 	gotoxy(77,7);
 	printf("%d",x.hp[num]);
 	
-	puthz(525,126,"Ê£ÓàÊ¯ÓÍ£º",16,17,WHITE);
+	puthz(525,126,"å‰©ä½™çŸ³æ²¹ï¼š",16,17,WHITE);
 	gotoxy(77,9);
 	printf("%d",x.oil[num]);
 	
-	puthz(525,157,"ĞĞ¶¯ÄÜÁ¦£º",16,17,WHITE);
+	puthz(525,157,"è¡ŒåŠ¨èƒ½åŠ›ï¼š",16,17,WHITE);
 	gotoxy(77,11);
 	printf("%d",x.max_move);
 	
-	puthz(525,190,"Éä³Ì£º",16,17,WHITE);
+	puthz(525,190,"å°„ç¨‹ï¼š",16,17,WHITE);
 	gotoxy(73,13);
 	printf("%d",x.max_attack);
 	
-	puthz(525,221,"¹¥»÷Á¦£º",16,17,WHITE);
+	puthz(525,221,"æ”»å‡»åŠ›ï¼š",16,17,WHITE);
 	gotoxy(75,15);
 	printf("%d",x.atk);
 	
 	if(x.type==4){
-		puthz(525,252,"´¬ÉÏµ¥Î»£º",16,17,WHITE);
-		if(x.port_type==0) puthz(605,252,"ÎŞ",16,17,WHITE);
+		puthz(525,252,"èˆ¹ä¸Šå•ä½ï¼š",16,17,WHITE);
+		if(x.port_type==0) puthz(605,252,"æ— ",16,17,WHITE);
 		else puthz(605,252,my[x.port_type].name,16,17,WHITE);
 	}
 	
-	setfillstyle(SOLID_FILL,GREEN);
-	bar(528,448,636,474);
-	puthz(542,454,"½áÊø»ØºÏ",16,20,WHITE);
+	if(butt){
+		setfillstyle(SOLID_FILL,GREEN);
+		bar(528,448,636,474);
+		puthz(542,454,"ç»“æŸå›åˆ",16,20,WHITE);
+	}
 	
-	if(op==0){
+	if(op==0&&butt){
 		setfillstyle(SOLID_FILL,BLUE);
 		bar(528,418,636,444);
-		puthz(562,423,"ÒÆ¶¯",16,20,WHITE);
+		puthz(562,423,"ç§»åŠ¨",16,20,WHITE);
 		
 		if(x.type!=4&&x.type!=5){
 			setfillstyle(SOLID_FILL,RED);
 			bar(528,388,636,414);
-			puthz(562,393,"¹¥»÷",16,20,WHITE);
+			puthz(562,393,"æ”»å‡»",16,20,WHITE);
 		}
 		
 		if(x.type==4){
 			setfillstyle(SOLID_FILL,RED);
 			bar(528,388,636,414);
-			puthz(532,393,"µ÷¶È´¬ÉÏµ¥Î»",16,17,WHITE);
+			puthz(532,393,"è°ƒåº¦èˆ¹ä¸Šå•ä½",16,17,WHITE);
 		}
 	}
 }
