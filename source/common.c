@@ -21,7 +21,7 @@ void print_map(int (*map_type)[13+3]){
 				setfillstyle(SOLID_FILL,GREEN);
 				bar((i-1)*40+1,(j-1)*40+1,(i-1)*40+39,(j-1)*40+39);
 			}
-			else{
+			if(map_type[j][i]==1){
 				setfillstyle(SOLID_FILL,BLUE);
 				bar((i-1)*40+1,(j-1)*40+1,(i-1)*40+39,(j-1)*40+39);
 			}
@@ -48,7 +48,6 @@ void print_UI(){
 我方单位：士兵、坦克、飞机、运输船。类型：1，2，3，4。HP:100，500，250，400。攻击距离：40，80，120，0    资源：5000，200，500，300  移动距离：40，80，120，80  数量：20，6，15，5。 攻击力：100，500，400。
 敌方单位：主城、炮台、城墙。类型：1、2、3。HP:3000，500，600。攻击距离:40,80,0  资源：5000，5000，5000 移动距离：0，0，0.  攻击力：100，200，0.
 关于敌方单位初始化位置信息：x[],y[],数字依次为表格上从上到下从左到右的顺序，特别地，敌方主城位置坐标：en[1].x[0]，en[1].y[0]。 然后最上方炮台为1号，位置坐标：en[2].x[1],en[2].y[1]
-
 lpc写的
 ********************/
 void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
@@ -181,6 +180,8 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	for (i = 1; i <= 20; i++) {
 		my[1].hp[i] = 100;
 		my[1].oil[i] = 2000;
+		my[1].x[i]=0;
+		my[1].y[i]=0;
 	}
 	my[1].atk = 100;
 	my[1].max_move = 1;
@@ -193,6 +194,8 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	for (i = 1; i <= 6; i++) {
 		my[2].hp[i] = 500;
 		my[2].oil[i] = 200;
+		my[2].x[i]=0;
+		my[2].y[i]=0;
 	}
 	my[2].atk = 500;
 	my[2].max_move = 2;
@@ -205,6 +208,8 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	for (i = 1; i <= 15; i++) {
 		my[3].hp[i] = 250;
 		my[3].oil[i] = 500;
+		my[3].x[i]=0;
+		my[3].y[i]=0;
 	}
 	my[3].atk = 400;
 	my[3].max_move = 3;
@@ -217,6 +222,8 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	for (i = 1; i <= 5; i++) {
 		my[4].hp[i] = 400;
 		my[4].oil[i] = 300;
+		my[4].x[i]=0;
+		my[4].y[i]=0;
 	}
 	my[4].atk = 0;
 	my[4].max_move = 2;
@@ -229,6 +236,8 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	for (i = 1; i <= 5; i++) {
 		my[5].hp[i] = 100;
 		my[5].oil[i] = 2000;
+		my[5].x[i]=0;
+		my[5].y[i]=0;
 	}
 	my[5].atk = 0;
 	my[5].max_move = 2;
@@ -244,7 +253,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	en[1].atk = 100;
 	en[1].max_move = 0;
 	en[1].max_attack = 1;
-	en[1].x[1] = 320 + 5;   en[1].y[1] = 160 + 12;
+	en[1].x[1] = 320 + 5;   en[1].y[1] = 170 + 12;
 	en[1].a[1] = 9;  en[1].b[1] = 5;
 
 	//敌方炮台所有信息
@@ -335,5 +344,3 @@ void  print_en(struct unit en[]) {
 		}
 	}           //打印敌方城墙
 }
-
-
