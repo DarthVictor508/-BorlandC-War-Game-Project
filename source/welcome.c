@@ -143,3 +143,103 @@ int welcome(char *s){
 		}
 	}
 }
+
+
+/********************
+布置我方单位
+lzz写的
+********************/
+void place(int(*map_type)[13+3], struct unit my[],struct unit en[],int num_my,int num_en){
+	int i,j,k,l,x,y,half,judge;
+	for(i=1;i<=num_my;i++){
+		info(my[i],1,0,my,0);
+		save_bk_mou(MouseX,MouseY);
+		for(j=1;j<=my[i].num;j++){
+			setfillstyle(SOLID_FILL,BLACK);
+			bar(123,383,519,480);
+			puthz(128,388,"请您部署我方",16,18,WHITE);
+			puthz(236,388,my[i].name,16,18,WHITE);
+			bar(524,275,640,315);
+			puthz(528,285,"剩余",16,18,WHITE);
+			puthz(586,285,"个单位",16,18,WHITE);
+			puthz(555,305,"待部署",16,18,WHITE);
+			gotoxy(72,19);
+			printf("%d",my[i].num-j+1);
+			while(1){
+				clrmous(MouseX,MouseY);
+				while(1){
+					newmouse(&MouseX,&MouseY,&press);
+					mouse(MouseX,MouseY);
+					if(mouse_press(1,1,520,360)==1){
+						half=get_block(MouseX,MouseY,&x,&y);
+						delay(100);
+						break;
+					}
+				}
+				judge=1;
+				if(my[i].type!=3&&my[i].type!=4&&map_type[y][x]==1){
+					judge=0;
+					setfillstyle(SOLID_FILL,BLACK);
+					bar(123,383,519,480);
+					puthz(128,388,"您不能将陆地作战单位部署在海里",16,18,WHITE);
+				}
+				if(my[i].type!=3&&my[i].type==4&&map_type[y][x]==0){
+					judge=0;
+					setfillstyle(SOLID_FILL,BLACK);
+					bar(123,383,519,480);
+					puthz(128,388,"您不能将海上作战单位部署在陆地上",16,18,WHITE);
+				}
+				if(my[i].type!=3){
+					for(k=1;k<=num_my;k++){
+						if(my[k].type==3) continue;
+						for(l=1;l<=my[k].num;l++){
+							if(my[k].a[l]==x&&my[k].b[l]==y){
+								judge=0;
+								setfillstyle(SOLID_FILL,BLACK);
+								bar(123,383,519,480);
+								puthz(128,388,"该位置已被占据",16,18,WHITE);
+								break;
+							}
+						}	
+						if(!judge) break;
+					}
+					for(k=1;k<=num_en;k++){
+						for(l=1;l<=en[k].num;l++){
+							if(en[k].a[l]==x&&en[k].b[l]==y){
+								judge=0;
+								setfillstyle(SOLID_FILL,BLACK);
+								bar(123,383,519,480);
+								puthz(128,388,"该位置已被占据",16,18,WHITE);
+								break;
+							}
+						}
+						if(!judge) break;
+					}
+				}
+				else{
+					for(k=1;k<=my[3].num;k++){
+						if(my[3].a[k]==x&&my[3].b[k]==y){
+							judge=0;
+							setfillstyle(SOLID_FILL,BLACK);
+							bar(123,383,519,480);
+							puthz(128,388,"该位置已被占据",16,18,WHITE);
+							break;
+						}
+					}	
+				}
+				if(judge){
+					my[i].a[j]=x;
+					my[i].b[j]=y;
+					my[i].x[j]=(x-1)*40+2;
+					my[i].y[j]=(y-1)*40+(my[i].type==3?2:22);
+					break;
+				}
+			}
+			clrmous(MouseX,MouseY);
+			if(my[i].type!=4&&my[i].type!=5) puthz(my[i].x[j],my[i].y[j],my[i].name,16,17,WHITE);
+			if(my[i].type==4) puthz(my[i].x[j],my[i].y[j],"运输",16,17,WHITE);
+			if(my[i].type==5) puthz(my[i].x[j],my[i].y[j],"支援",16,17,WHITE);
+			save_bk_mou(MouseX,MouseY);
+		}
+	}
+}
