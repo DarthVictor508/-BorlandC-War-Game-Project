@@ -33,5 +33,6 @@ void print_map(int (*map_type)[13+3]);
 void print_UI();
 void init(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,int num_en);
 int get_block(int Moux,int MouY,int *x,int *y);
+void  print_en(struct unit en[]);
 
 #endif
