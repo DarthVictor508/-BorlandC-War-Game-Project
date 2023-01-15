@@ -227,12 +227,12 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	my[5].type = 5;
 	my[5].num = 10;
 	for (i = 1; i <= 5; i++) {
-		my[4].hp[i] = 100;
-		my[4].oil[i] = 2000;
+		my[5].hp[i] = 100;
+		my[5].oil[i] = 2000;
 	}
-	my[4].atk = 0;
-	my[4].max_move = 2;
-	my[4].max_attack = 0;	
+	my[5].atk = 0;
+	my[5].max_move = 2;
+	my[5].max_attack = 0;	
 	
 
 	//敌方主城所有信息
