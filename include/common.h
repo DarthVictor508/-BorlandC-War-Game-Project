@@ -18,7 +18,7 @@ struct unit{
 	int hp[25]; //剩余血量
 	int oil[25]; //剩余资源
 	int x[25],y[25]; //像素位置
-	int a[25],b[25]://地图位置	
+	int a[25],b[25];//地图位置	
 	int max_move; //最大移动距离
 	int max_attack; //最大打击距离
 	int atk; //攻击力（打一次对面掉多少血）
