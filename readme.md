@@ -13,3 +13,5 @@ lzz建立项目并上传文件，common和welcome有了一些修改，要不你�
 1. lzz发现自己需要进行字符串操作但是之前忘了在```common.h```里调用string库，所以在```common.h```里面加上了```#include<string.h>```
 2. lzz在结构体里添加了```max_attack```参数和一些关于运输船的参数。
 3. lzz添加了```info.h```和```info.c```，用于在右侧的信息栏里输出信息。
+# 1.15
+1. lzz添加了```anime.h```和```anime.c```，用于动画类功能。目前内部有一个函数```print_atk```，用于播放攻击动画。
