@@ -12,7 +12,7 @@
 #include<string.h>
 
 struct unit{
-	char name[10]; //战斗单位名称（中文）
+	char *name; //战斗单位名称（中文）
 	int type; //战斗单位类型，统一编码，比如坦克是0等等
 	int num; //战斗单位编号，指在数组里的下标
 	int hp[25]; //剩余血量
