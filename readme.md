@@ -20,3 +20,5 @@ lzz建立项目并上传文件，common和welcome有了一些修改，要不你�
 4. 保险起见，lzz在```common.c```中```init```函数里添加了将所有我方单位坐标初始化为0
 5. lzz修改了info系列中的```info```函数，添加了一个参数，使得它能够在显示信息时选择不打印按钮。
 6. lzz在welcome系列中添加了```place```函数，用于初始放置我方单位
+# 1.30
+1. lzz将项目名称改为了BorlandC-War-Game-Project
