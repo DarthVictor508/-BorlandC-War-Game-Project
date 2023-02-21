@@ -22,3 +22,5 @@ lzz建立项目并上传文件，common和welcome有了一些修改，要不你�
 6. lzz在welcome系列中添加了```place```函数，用于初始放置我方单位
 # 1.30
 1. lzz将项目名称改为了BorlandC-War-Game-Project
+# 2.21
+1.lpc修改了```anime.c```
