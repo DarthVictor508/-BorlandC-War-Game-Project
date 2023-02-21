@@ -1,9 +1,9 @@
 #include"anime.h"
 
 /********************
-ÓÃÓÚÕÙ»½Ò»¸öÅÚµ¯£¨Ğ¡ ºì µã£©È»ºó²¥·ÅÒ»¶ÎËü´Ó(x,y)ÒÆ¶¯µ½(xx,yy)µÄ¶¯»­
-ĞÎ²ÎÒÔÏñËØÎªµ¥Î»£¬²»ÊÇ¸ñ×Ó
-lzzĞ´µÄ
+ç”¨äºå¬å”¤ä¸€ä¸ªç‚®å¼¹ï¼ˆå° çº¢ ç‚¹ï¼‰ç„¶åæ’­æ”¾ä¸€æ®µå®ƒä»(x,y)ç§»åŠ¨åˆ°(xx,yy)çš„åŠ¨ç”»
+å½¢å‚ä»¥åƒç´ ä¸ºå•ä½ï¼Œä¸æ˜¯æ ¼å­
+lzzå†™çš„
 ********************/
 void print_atk(int x,int y,int xx,int yy){
 	void *buff;
@@ -33,6 +33,7 @@ void print_atk(int x,int y,int xx,int yy){
 	}
 	putimage(xx-5,yy-5,buff,COPY_PUT);
 	free(buff);
+	getimage(xx -10, yy - 16, xx + 16, yy + 15,buff);
 	setcolor(RED);
 	setlinestyle(SOLID_LINE,0,THICK_WIDTH);
 	line(xx-3,yy+15,xx+2,yy+9);
@@ -65,4 +66,7 @@ void print_atk(int x,int y,int xx,int yy){
 	line(xx-2,yy-1,xx-6,yy+6);
 	line(xx-6,yy+5,xx-2,yy);
 	line(xx-2,yy,xx-1,yy+11);
+	delay(100);
+	putimage(xx-10, yy-16, buff, COPY_PUT);
+	free(buff);
 }
