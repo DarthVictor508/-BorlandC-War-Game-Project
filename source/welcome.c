@@ -108,7 +108,8 @@ int welcome(char *s){
 	setfillstyle(SOLID_FILL,WHITE);
 	bar(0,360,640,480);
 	puthz(10,360,"欧根",32,40,BLACK);
-	puthz(20,405,"唔，有趣的名字。我记住了。",24,30,BLACK);
+	if(!exist(s)) puthz(20,405,"唔，有趣的名字。我记住了。",24,30,BLACK);
+	else puthz(20,405,"哦，原来是你啊。欢迎回来！",24,30,BLACK);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
@@ -242,4 +243,11 @@ void place(int(*map_type)[13+3], struct unit my[],struct unit en[],int num_my,in
 			save_bk_mou(MouseX,MouseY);
 		}
 	}
+}
+
+/********************
+用于显示教程
+lpc写的
+********************/
+void teach(){
 }
