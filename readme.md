@@ -24,3 +24,6 @@ lzz建立项目并上传文件，common和welcome有了一些修改，要不你�
 1. lzz将项目名称改为了BorlandC-War-Game-Project
 # 2.21
 1. lpc修改了```anime.c```
+# 2.23
+1. lzz上传了```data.h```和```data.c```，内涵记录用户信息以及显示结算界面的函数
+2. lzz修改了```welcome.h```和```welcome.c```，现在开场动画可以分辨名字是否先前出现过。同时在welcome系列中增加了```teach()```函数用于之后写教程
