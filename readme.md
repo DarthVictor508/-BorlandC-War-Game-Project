@@ -23,4 +23,4 @@ lzz建立项目并上传文件，common和welcome有了一些修改，要不你�
 # 1.30
 1. lzz将项目名称改为了BorlandC-War-Game-Project
 # 2.21
-1.lpc修改了```anime.c```
+1. lpc修改了```anime.c```
