@@ -197,12 +197,15 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//我方士兵所有信息
 	my[1].name = "士兵";
 	my[1].type = 1;
-	my[1].num = 20;
+	my[1].num = 3;
 	for (i = 1; i <= 20; i++) {
 		my[1].hp[i] = 100;
 		my[1].oil[i] = 2000;
 		my[1].x[i]=0;
 		my[1].y[i]=0;
+		my[1].a[i]=0;
+		my[1].b[i]=0;
+		my[1].ported[i]=0;
 	}
 	my[1].atk = 100;
 	my[1].max_move = 1;
@@ -211,12 +214,15 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//我方坦克所有信息
 	my[2].name = "坦克";
 	my[2].type = 2;
-	my[2].num = 6;
+	my[2].num = 2;
 	for (i = 1; i <= 6; i++) {
 		my[2].hp[i] = 500;
 		my[2].oil[i] = 200;
 		my[2].x[i]=0;
 		my[2].y[i]=0;
+		my[2].a[i]=0;
+		my[2].b[i]=0;
+		my[2].ported[i]=0;
 	}
 	my[2].atk = 500;
 	my[2].max_move = 2;
@@ -225,12 +231,15 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//我方飞机所有信息
 	my[3].name = "飞机";
 	my[3].type = 3;
-	my[3].num = 15;
+	my[3].num = 2;
 	for (i = 1; i <= 15; i++) {
 		my[3].hp[i] = 250;
 		my[3].oil[i] = 500;
 		my[3].x[i]=0;
 		my[3].y[i]=0;
+		my[3].a[i]=0;
+		my[3].b[i]=0;
+		my[3].ported[i]=0;
 	}
 	my[3].atk = 400;
 	my[3].max_move = 3;
@@ -239,12 +248,17 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//我方运输船所有信息
 	my[4].name = "运输船";
 	my[4].type = 4;
-	my[4].num = 5;
+	my[4].num = 1;
 	for (i = 1; i <= 5; i++) {
 		my[4].hp[i] = 400;
 		my[4].oil[i] = 300;
 		my[4].x[i]=0;
 		my[4].y[i]=0;
+		my[4].a[i]=0;
+		my[4].b[i]=0;
+		my[4].ported[i]=0;
+		my[4].port_type[i]=0;
+		my[4].port_num[i]=0;
 	}
 	my[4].atk = 0;
 	my[4].max_move = 2;
@@ -253,12 +267,15 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//我方支援兵所有信息
 	my[5].name = "支援兵";
 	my[5].type = 5;
-	my[5].num = 10;
+	my[5].num = 2;
 	for (i = 1; i <= 5; i++) {
 		my[5].hp[i] = 100;
 		my[5].oil[i] = 2000;
 		my[5].x[i]=0;
 		my[5].y[i]=0;
+		my[5].a[i]=0;
+		my[5].b[i]=0;
+		my[5].ported[i]=0;
 	}
 	my[5].atk = 0;
 	my[5].max_move = 2;
@@ -274,6 +291,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	en[1].atk = 100;
 	en[1].max_move = 0;
 	en[1].max_attack = 1;
+	en[1].ported[1]=0;
 	en[1].x[1] = 320 + 5;   en[1].y[1] = 170 + 12;
 	en[1].a[1] = 9;  en[1].b[1] = 5;
 
@@ -284,6 +302,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	for (i = 1; i <= 14; i++){
 		en[2].hp[i] = 500;
 		en[2].oil[i] = 5000;
+		en[2].ported[i]=0;
 	}
 		en[2].atk=200;
 		en[2].max_move=0;
@@ -364,4 +383,21 @@ void  print_en(struct unit en[]) {
 			puthz(en[3].x[i], en[3].y[i], "城墙", 16, 17, BLACK);
 		}
 	}           //打印敌方城墙
+}
+
+/*******************
+打印我方单位
+lpc写的
+********************/
+void  print_my(struct unit my[],int num_my) {
+	int i,j;
+	for(i=1;i<=num_my;i++){
+		for(j=1;j<=my[i].num;j++){
+			if(my[i].hp[j]<=0||my[i].oil[j]<=0) continue;
+			if(my[i].ported[j]) continue;
+			if(my[i].type!=4&&my[i].type!=5) puthz(my[i].x[j],my[i].y[j],my[i].name,16,17,WHITE);
+			if(my[i].type==4) puthz(my[i].x[j],my[i].y[j],"运输",16,17,WHITE);
+			if(my[i].type==5) puthz(my[i].x[j],my[i].y[j],"支援",16,17,WHITE);
+		}
+	}
 }
