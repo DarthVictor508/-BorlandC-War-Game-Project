@@ -5,6 +5,9 @@
 lzz写的
 ********************/
 int welcome(char *s){
+	int cnt=0,now=235;
+	char temp[5];
+	
 	cleardevice();
 	setbkcolor(WHITE);
 	setfillstyle(SOLID_FILL,WHITE);
@@ -15,7 +18,7 @@ int welcome(char *s){
 	bar(240,375,240+40*4,375+40);
 	puthz(240+5,375+5,"开始游戏",32,40,BLACK);
 	clrmous(MouseX,MouseY);
-	delay(1000);
+	delay(100);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
@@ -34,6 +37,7 @@ int welcome(char *s){
 	putbmp(110,0,"source\\picture\\ougen3.bmp");
 	puthz(10,360,"你的秘书舰",32,40,BLACK);
 	puthz(20,405,"嗯？你就是新来的指挥官吗？",24,30,BLACK);
+	puthz(495,455,"点击任意处继续",16,18,BLACK);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
@@ -48,6 +52,7 @@ int welcome(char *s){
 	bar(0,360,640,480);
 	puthz(10,360,"欧根",32,40,BLACK);
 	puthz(20,405,"你好，我是你的秘书舰欧根。",24,30,BLACK);
+	puthz(495,455,"点击任意处继续",16,18,BLACK);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
@@ -61,6 +66,7 @@ int welcome(char *s){
 	delay(100);
 	bar(0,405,640,480);
 	puthz(20,405,"接下来的夺岛作战就拜托你来指挥了。",24,30,BLACK);
+	puthz(495,455,"点击任意处继续",16,18,BLACK);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
@@ -74,6 +80,7 @@ int welcome(char *s){
 	delay(100);
 	bar(0,405,640,480);
 	puthz(20,405,"那么，可以先告诉我你的名字吗？",24,30,BLACK);
+	puthz(495,455,"点击任意处继续",16,18,BLACK);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
@@ -102,14 +109,39 @@ int welcome(char *s){
 	delay(100);
 	setfillstyle(SOLID_FILL,BLACK);
 	bar(230,380,620,405);
-	gotoxy(30,25);
-	scanf("%s",s);
+	puthz(230,407,"（你的名字不能超过十五个字符哦）",16,18,BLACK);
+	setcolor(WHITE);
+    settextstyle(DEFAULT_FONT, HORIZ_DIR, 2);
+    settextjustify(LEFT_TEXT, TOP_TEXT);
+	while(1){
+		s[cnt++]=getch();
+		if(s[cnt-1]=='\r'){
+			s[cnt-1]='\0';
+			break;
+		}
+		if(s[cnt-1]=='\b'){
+			if(cnt>=2){
+				cnt-=2;
+				bar(now-15,380,now,405);
+				now-=15;
+			}
+			else cnt--;
+		}
+		else if(cnt<=15){
+			temp[0]=s[cnt-1];
+			temp[1]='\0';
+			outtextxy(now,385,temp);
+			now+=15;
+		}
+		else cnt--;
+	}
 	
 	setfillstyle(SOLID_FILL,WHITE);
 	bar(0,360,640,480);
 	puthz(10,360,"欧根",32,40,BLACK);
 	if(!exist(s)) puthz(20,405,"唔，有趣的名字。我记住了。",24,30,BLACK);
 	else puthz(20,405,"哦，原来是你啊。欢迎回来！",24,30,BLACK);
+	puthz(495,455,"点击任意处继续",16,18,BLACK);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
