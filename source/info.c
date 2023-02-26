@@ -72,8 +72,8 @@ void info(struct unit x,int num,int op,struct unit my[],int butt){
 	
 	if(x.type==4){
 		puthz(525,252,"船上单位：",16,17,WHITE);
-		if(x.port_type==0) puthz(605,252,"无",16,17,WHITE);
-		else puthz(605,252,my[x.port_type].name,16,17,WHITE);
+		if(x.port_type[num]==0) puthz(605,252,"无",16,17,WHITE);
+		else puthz(605,252,my[x.port_type[num]].name,16,17,WHITE);
 	}
 	
 	if(butt){
