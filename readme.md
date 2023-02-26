@@ -31,3 +31,4 @@ lzz建立项目并上传文件，common和welcome有了一些修改，要不你�
 1. lzz在```common.c```里新增函数nts（number to string）用来将数字转换为字符串
 2. lzz修改了```welcome.c```，现在输入名字时可以退格
 3. lzz修改了```data.c```，现在显示数字时不会出现黑框
+4. lzz修改了```common.c```，新增了一些初始化
