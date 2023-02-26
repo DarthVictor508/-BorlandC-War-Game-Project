@@ -9,6 +9,27 @@ int get_dis(struct unit a,struct unit b){
 }
 
 /********************
+用于将数字转换为字符串
+lzz写的
+********************/
+void nts(int x,char *s){
+	int cnt=0,i;
+	char temp;
+	if(x==0) s[0]='0',cnt=1;
+	while(x){
+		s[cnt++]=x%10+'0';
+		x/=10;
+	}
+	for(i=0;i<cnt/2;i++){
+		temp=s[i];
+		s[i]=s[cnt-i-1];
+		s[cnt-i-1]=temp;
+	}
+	s[cnt]='\0';
+	return s;
+}
+
+/********************
 用于打印地图（不清屏）
 lzz写的
 ********************/
