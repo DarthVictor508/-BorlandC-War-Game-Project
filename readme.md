@@ -27,3 +27,7 @@ lzz建立项目并上传文件，common和welcome有了一些修改，要不你�
 # 2.23
 1. lzz上传了```data.h```和```data.c```，内涵记录用户信息以及显示结算界面的函数
 2. lzz修改了```welcome.h```和```welcome.c```，现在开场动画可以分辨名字是否先前出现过。同时在welcome系列中增加了```teach()```函数用于之后写教程
+# 2.26
+1. lzz在```common.c```里新增函数nts（number to string）用来将数字转换为字符串
+2. lzz修改了```welcome.c```，现在输入名字时可以退格
+3. lzz修改了```data.c```，现在显示数字时不会出现黑框
