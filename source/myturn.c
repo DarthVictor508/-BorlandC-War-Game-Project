@@ -1,11 +1,11 @@
 #include "myturn.h"
 
 /********************
-ÓÃÓÚËÑË÷Ò»¸öµ¥Î»ÄÜ×ßµ½ÄÄĞ©¸ñ×Ó
-lzzĞ´µÄ
+ç”¨äºæœç´¢ä¸€ä¸ªå•ä½èƒ½èµ°åˆ°å“ªäº›æ ¼å­
+lzzå†™çš„
 ********************/
 void bfs(struct unit x,int num,int (*map_type)[13+3],int (*f)[13+3],struct unit my[],struct unit en[],int num_my,int num_en){
-	const int dirx[4]={-1,1,0,0};
+	const int dirx[4]={-1,1,0,0};//å››ä¸ªæ–¹å‘
 	const int diry[4]={0,0,-1,1};
 	int i,j,k;
 	int nx,ny;
@@ -20,17 +20,17 @@ void bfs(struct unit x,int num,int (*map_type)[13+3],int (*f)[13+3],struct unit 
 	tmp.y=x.a[num];
 	tmp.rest=x.max_move;
 	f[tmp.x][tmp.y]=1;
-	q[++tail]=tmp;
+	q[++tail]=tmp;//åˆå§‹ä½ç½®å…¥é˜Ÿ
 	while(tail>=head){
-		tmp=q[head++];
+		tmp=q[head++];//å–ä¸€ä¸ªåæ ‡å‡ºæ¥
 		if(tmp.rest==0) continue;
 		for(i=0;i<4;i++){
 			nx=tmp.x+dirx[i];
-			ny=tmp.y+diry[i];
+			ny=tmp.y+diry[i];//å–ä¸€ä¸ªæ–¹å‘
 			if(f[nx][ny]) continue;
-			if(x.type!=3&&x.type!=4&&map_type[nx][ny]==1){ //Â½µØµ¥Î»ÏÂÒ»²½ÔÚº£Àï
+			if(x.type!=3&&x.type!=4&&map_type[nx][ny]==1){ //é™†åœ°å•ä½ä¸‹ä¸€æ­¥åœ¨æµ·é‡Œ
 				judge=0;
-				for(j=1;j<=my[4].num;j++){ //ÅĞ¶Ïº£ÀïÊÇ·ñÓĞÔËÊä´¬
+				for(j=1;j<=my[4].num;j++){ //åˆ¤æ–­æµ·é‡Œæ˜¯å¦æœ‰è¿è¾“èˆ¹
 					if(my[4].b[j]==nx&&my[4].a[j]==ny&&my[4].port_type[j]==0){
 						judge=1;
 						break;
@@ -39,10 +39,10 @@ void bfs(struct unit x,int num,int (*map_type)[13+3],int (*f)[13+3],struct unit 
 				f[nx][ny]=judge;
 				continue;
 			}
-			if(x.type==4&&map_type[nx][ny]==0) continue; //º£ÉÏµ¥Î»ÏÂÒ»²½ÔÚÂ½µØ
-			if(nx<=0||ny<=0||nx>9||ny>13) continue; //ÏÂÒ»²½³ö½ç
+			if(x.type==4&&map_type[nx][ny]==0) continue; //æµ·ä¸Šå•ä½ä¸‹ä¸€æ­¥åœ¨é™†åœ°
+			if(nx<=0||ny<=0||nx>9||ny>13) continue; //ä¸‹ä¸€æ­¥å‡ºç•Œ
 			judge=1;
-			if(x.type!=3){ //²»ÊÇ·É»úÊ±ÅĞ¶ÏÏÂÒ»²½ÊÇ·ñÒÑ±»Õ¼¾İ
+			if(x.type!=3){ //ä¸æ˜¯é£æœºæ—¶åˆ¤æ–­ä¸‹ä¸€æ­¥æ˜¯å¦å·²è¢«å æ®
 				for(j=1;j<=num_my;j++){
 					if(my[j].type==3) continue;
 					for(k=1;k<=my[j].num;k++){
@@ -56,7 +56,7 @@ void bfs(struct unit x,int num,int (*map_type)[13+3],int (*f)[13+3],struct unit 
 				}
 				for(j=1;j<=num_en;j++){
 					for(k=1;k<=en[j].num;k++){
-						if(en[j].hp[i]<=0) continue;
+						if(en[j].hp[k]<=0) continue;
 						if(en[j].b[k]==nx&&en[j].a[k]==ny){
 							judge=0;
 							break;
@@ -65,7 +65,7 @@ void bfs(struct unit x,int num,int (*map_type)[13+3],int (*f)[13+3],struct unit 
 					if(!judge) break;
 				}
 			}
-			else{ //·É»ú
+			else{ //é£æœº
 				for(j=1;j<=my[3].num;j++){
 					if(my[3].hp[k]<=0||my[3].oil[k]<=0) continue;
 					if(my[3].b[j]==nx&&my[3].a[j]==ny){
@@ -74,18 +74,18 @@ void bfs(struct unit x,int num,int (*map_type)[13+3],int (*f)[13+3],struct unit 
 					}
 				}	
 			}
-			if(!judge) continue;
-			f[nx][ny]=1;
+			if(!judge) continue;//ä¸‹ä¸€ä¸ªä½ç½®ä¸åˆæ³•åˆ™è·³è¿‡
+			f[nx][ny]=1;//ä¸‹ä¸€ä¸ªä½ç½®åˆæ³•åˆ™æ ‡è®°å¹¶å…¥é˜Ÿ
 			temp.x=nx,temp.y=ny,temp.rest=tmp.rest-1;
 			q[++tail]=temp;
 		}
 	}
-	f[x.b[num]][x.a[num]]=0;
+	f[x.b[num]][x.a[num]]=0;//æŠŠæœ€åˆå§‹ä½ç½®å–æ¶ˆæ ‡è®°ï¼ˆå› ä¸ºä¸ç§»åŠ¨æ²¡æ„ä¹‰ï¼‰
 }
 
 /********************
-ÎÒ·½ĞĞ¶¯ÂÖ
-lzzĞ´µÄ
+æˆ‘æ–¹è¡ŒåŠ¨è½®
+lzzå†™çš„
 ********************/
 void myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,int num_en){
 	int x,y,half,i,j,now_type=0,now_num=0,now_op=2,re=0,f[13+3][13+3],judge;
@@ -94,27 +94,27 @@ void myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,i
 	my_turn();
 	setfillstyle(SOLID_FILL,BLACK);
 	bar(123,383,519,480);
-	puthz(128,388,"ÏÖÔÚÊÇÄãµÄ»ØºÏ£¬Çëµ÷¶È±øÁ¦°É¡£",16,18,WHITE);
+	puthz(128,388,"ç°åœ¨æ˜¯ä½ çš„å›åˆï¼Œè¯·è°ƒåº¦å…µåŠ›å§ã€‚",16,18,WHITE);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
-		//Ë¢ĞÂÓÒ²àĞÅÏ¢À¸
+		//åˆ·æ–°å³ä¾§ä¿¡æ¯æ 
 		if(re){
 			if(now_op==0) info(my[now_type],now_num,now_op,my,1);
 			if(now_op==1) info(en[now_type],now_num,now_op,my,1);
 		}
 		re=0;
-		//µã»÷ÁË½áÊø»ØºÏ
+		//ç‚¹å‡»äº†ç»“æŸå›åˆ
 		if(mouse_press(528,448,636,474)==1){ 
 			delay(100);
 			break;
 		}
 		if(now_op==0){
-			//µã»÷ÁËÒÆ¶¯
+			//ç‚¹å‡»äº†ç§»åŠ¨
 			if(mouse_press(528,418,636,444)==1){
 				delay(100);
-				bfs(my[now_type],now_num,map_type,f,my,en,num_my,num_en); //ËÑË÷¿ÉÒÆ¶¯µ½ÄÄÀï
-				for(i=1;i<=9;i++){//Êä³ö´øÓĞ¿ÉĞĞÎ»ÖÃµÄµØÍ¼
+				bfs(my[now_type],now_num,map_type,f,my,en,num_my,num_en); //æœç´¢å¯ç§»åŠ¨åˆ°å“ªé‡Œ
+				for(i=1;i<=9;i++){//è¾“å‡ºå¸¦æœ‰å¯è¡Œä½ç½®çš„åœ°å›¾
 					for(j=1;j<=13;j++){
 						if(f[i][j]) setfillstyle(SOLID_FILL,RED);
 						else{
@@ -128,15 +128,15 @@ void myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,i
 				print_my(my,num_my);
 				clrmous(MouseX,MouseY);
 				delay(100);
-				setfillstyle(SOLID_FILL,BLACK);//ĞŞ¸Ä°´Å¥ÎªÖ»Ê£ÏÂÈ¡ÏûÒÆ¶¯
+				setfillstyle(SOLID_FILL,BLACK);//ä¿®æ”¹æŒ‰é’®ä¸ºåªå‰©ä¸‹å–æ¶ˆç§»åŠ¨
 				bar(528,388,640,480);
 				setfillstyle(SOLID_FILL,GREEN);
 				bar(528,448,636,474);
-				puthz(542,454,"È¡ÏûÒÆ¶¯",16,20,WHITE);
+				puthz(542,454,"å–æ¶ˆç§»åŠ¨",16,20,WHITE);
 				while(1){
 					newmouse(&MouseX,&MouseY,&press);
 					mouse(MouseX,MouseY);
-					if(mouse_press(528,448,636,474)==1){//µã»÷ÁËÈ¡ÏûÒÆ¶¯
+					if(mouse_press(528,448,636,474)==1){//ç‚¹å‡»äº†å–æ¶ˆç§»åŠ¨
 						clrmous(MouseX,MouseY);
 						delay(100);
 						print_map(map_type);
@@ -145,24 +145,24 @@ void myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,i
 						info(my[now_type],now_num,now_op,my,1);
 						break;
 					}
-					if(mouse_press(0,0,520,359)==1){//µã»÷ÁËµØÍ¼ÔòÅĞ¶ÏÒÆ¶¯µÄÎ»ÖÃÊÇ·ñºÏ·¨£¬ÔÙÒÆ¶¯
+					if(mouse_press(0,0,520,359)==1){//ç‚¹å‡»äº†åœ°å›¾åˆ™åˆ¤æ–­ç§»åŠ¨çš„ä½ç½®æ˜¯å¦åˆæ³•ï¼Œå†ç§»åŠ¨
 						half=get_block(MouseX,MouseY,&x,&y);
 						delay(100);
 						if(!f[y][x]){
 							setfillstyle(SOLID_FILL,BLACK);
 							bar(123,383,519,480);
-							puthz(128,388,"¸Ãµ¥Î»ÎŞ·¨ÒÆ¶¯µ½ÄÇ¸öÎ»ÖÃÅ¶¡£",16,18,WHITE);
+							puthz(128,388,"è¯¥å•ä½æ— æ³•ç§»åŠ¨åˆ°é‚£ä¸ªä½ç½®å“¦ã€‚",16,18,WHITE);
 							continue;
 						}
 						judge=0;
-						for(i=1;i<=my[4].num;i++){ //ÅĞ¶ÏÒªÈ¥µÄÎ»ÖÃÊÇ·ñÓĞÔËÊä´¬
+						for(i=1;i<=my[4].num;i++){ //åˆ¤æ–­è¦å»çš„ä½ç½®æ˜¯å¦æœ‰è¿è¾“èˆ¹
 							if(my[4].hp[i]<=0||my[4].oil[i]<=0) continue;
 							if(my[4].a[i]==x&&my[4].b[i]==y){
 								judge=i;
 								break;
 							}
 						}
-						if((!judge)||now_type==3){//²»ÊÇÉÏ´¬ÔòÖ±½ÓÒÆ¶¯
+						if((!judge)||now_type==3){//ä¸æ˜¯ä¸Šèˆ¹åˆ™ç›´æ¥ç§»åŠ¨
 							my[now_type].b[now_num]=y;
 							my[now_type].a[now_num]=x;
 							my[now_type].x[now_num]=(x-1)*40+2;
@@ -176,7 +176,7 @@ void myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,i
 							now_op=2;
 							setfillstyle(SOLID_FILL,BLACK);
 							bar(123,383,519,480);
-							puthz(128,388,"ÏÖÔÚÊÇÄãµÄ»ØºÏ£¬Çëµ÷¶È±øÁ¦°É¡£",16,18,WHITE);
+							puthz(128,388,"ç°åœ¨æ˜¯ä½ çš„å›åˆï¼Œè¯·è°ƒåº¦å…µåŠ›å§ã€‚",16,18,WHITE);
 							break;
 						}
 						else{
@@ -192,7 +192,7 @@ void myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,i
 							now_op=2;
 							setfillstyle(SOLID_FILL,BLACK);
 							bar(123,383,519,480);
-							puthz(128,388,"ÏÖÔÚÊÇÄãµÄ»ØºÏ£¬Çëµ÷¶È±øÁ¦°É¡£",16,18,WHITE);
+							puthz(128,388,"ç°åœ¨æ˜¯ä½ çš„å›åˆï¼Œè¯·è°ƒåº¦å…µåŠ›å§ã€‚",16,18,WHITE);
 							break;
 						}
 					}
@@ -201,9 +201,11 @@ void myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,i
 			}
 		}
 		if(mouse_press(0,0,520,359)==1){
-			//ÅĞ¶ÏÊÇ·ñµã»÷ÁËĞÂµÄµ¥Î»
-			//Èç¹ûµã»÷ÁËĞÂµÄµ¥Î»ÔòÏÂÒ»´ÎË¢ĞÂÓÒ²àĞÅÏ¢À¸
+			//åˆ¤æ–­æ˜¯å¦ç‚¹å‡»äº†æ–°çš„å•ä½
+			//å¦‚æœç‚¹å‡»äº†æ–°çš„å•ä½åˆ™ä¸‹ä¸€æ¬¡åˆ·æ–°å³ä¾§ä¿¡æ¯æ 
 			half=get_block(MouseX,MouseY,&x,&y);
+			/*gotoxy(0,0);
+			printf("%d %d %d %d\n",MouseX,MouseY,x,y);*/
 			delay(100);
 			for(i=1;i<=num_my;i++){
 				for(j=1;j<=my[i].num;j++){
