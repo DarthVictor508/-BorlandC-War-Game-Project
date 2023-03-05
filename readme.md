@@ -37,3 +37,5 @@ lzz建立项目并上传文件，common和welcome有了一些修改，要不你�
 # 2.27
 1. lzz修正了```common.c```中```init```函数中的位置BUG
 2. lzz修正了```myturn.c```中```bfs```函数中的BUG
+# 3.5
+1. lpc上传```enturn.c```和```enturn.h```,更新```common.c```
