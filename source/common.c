@@ -279,7 +279,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	}
 	my[5].atk = 0;
 	my[5].max_move = 2;
-	my[5].max_attack = 0;	
+	my[5].max_attack = 5; //相当于可支援范围
 	
 
 	//敌方主城所有信息
@@ -407,7 +407,6 @@ void  print_en(struct unit en[]) {
 	if (en[1].hp[1] > 0){
 		puthz(en[1].x[1], en[1].y[1], en[1].name, 16, 17, RED);
 	}			 //	打印敌方主城
-
 	for (i = 1; i <= en[2].num; i++) {
 		if (en[2].hp[i] > 0) {
 			puthz(en[2].x[i], en[2].y[i], en[2].name, 16, 17, BLACK);
