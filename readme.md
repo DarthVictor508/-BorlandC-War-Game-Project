@@ -39,3 +39,6 @@ lzz建立项目并上传文件，common和welcome有了一些修改，要不你�
 2. lzz修正了```myturn.c```中```bfs```函数中的BUG
 # 3.5
 1. lpc上传```enturn.c```和```enturn.h```,更新```common.c```
+# 3.6
+1. lzz更新了```common.c```，改了支援兵的```max_attack```（不能为0，应该是可支援范围）
+2. 刘政孜更新了```myturn.c```，现在它是完全体了
