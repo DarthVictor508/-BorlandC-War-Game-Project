@@ -83,17 +83,19 @@ void info(struct unit x,int num,int op,struct unit my[],int butt){
 	}
 	
 	if(op==0&&butt){
-		setfillstyle(SOLID_FILL,BLUE);
-		bar(528,418,636,444);
-		puthz(562,423,"移动",16,20,WHITE);
+		if(x.moved[num]>0){
+			setfillstyle(SOLID_FILL,BLUE);
+			bar(528,418,636,444);
+			puthz(562,423,"移动",16,20,WHITE);
+		}
 		
-		if(x.type!=4&&x.type!=5){
+		if(x.type!=4&&x.type!=5&&x.atked[num]>0){
 			setfillstyle(SOLID_FILL,RED);
 			bar(528,388,636,414);
 			puthz(562,393,"攻击",16,20,WHITE);
 		}
 		
-		if(x.type==4){
+		if(x.type==4&&x.port_type[num]!=0){
 			setfillstyle(SOLID_FILL,RED);
 			bar(528,388,636,414);
 			puthz(532,393,"调度船上单位",16,17,WHITE);
