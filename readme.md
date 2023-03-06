@@ -41,4 +41,5 @@ lzz建立项目并上传文件，common和welcome有了一些修改，要不你�
 1. lpc上传```enturn.c```和```enturn.h```,更新```common.c```
 # 3.6
 1. lzz更新了```common.c```，改了支援兵的```max_attack```（不能为0，应该是可支援范围）
-2. 刘政孜更新了```myturn.c```，现在它是完全体了
+2. lzz更新了```myturn.c```，现在它是完全体了
+3. lzz更新了```info.c```，现在移动/攻击次数耗尽时不会显示相应按钮
