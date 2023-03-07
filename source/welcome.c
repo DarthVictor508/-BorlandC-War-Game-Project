@@ -238,6 +238,7 @@ void place(int(*map_type)[13+3], struct unit my[],struct unit en[],int num_my,in
 					}
 					for(k=1;k<=num_en;k++){
 						for(l=1;l<=en[k].num;l++){
+							if(en[k].type==5) continue;
 							if(en[k].a[l]==x&&en[k].b[l]==y){
 								judge=0;
 								setfillstyle(SOLID_FILL,BLACK);
