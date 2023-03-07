@@ -11,9 +11,10 @@ struct ab_atk {
     int type;
 };
 
-int enturn(struct unit my[], struct unit en[]);
+int enturn(int(*map_type)[13 + 3],struct unit my[], struct unit en[],int num_my);
 void en_p_search(struct unit my[], struct unit en[], int en_atk[], struct ab_atk able[]);
-void en_print_atk(struct unit my[], struct unit en[],int en_atk[], struct ab_atk able[]);
+void en_print_atk(struct unit my[], struct unit en[],int en_atk[], struct ab_atk able[],int num_my, int(*map_type)[13 + 3]);
 void en_p_dis_blood(struct unit my[], struct unit en[], struct ab_atk able[]);
+void mine_boom(struct unit my[], struct unit en[],int num_my);
 
 #endif
