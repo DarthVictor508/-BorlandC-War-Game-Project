@@ -277,7 +277,7 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 				continue;
 			}
 			//对运输船点击了调度船上单位
-			if(now_type==4&&mouse_press(528,388,636,414)==1&&my[4].port_type[now_num]!=0){
+			if(now_type==4&&mouse_press(528,388,636,414)==1&&my[4].port_type[now_num]!=0&&my[my[4].port_type[now_num]].moved[my[4].port_num[now_num]]>0){
 				delay(100);
 				//先将被调度单位的坐标与船统一
 				my[my[4].port_type[now_num]].a[my[4].port_num[now_num]]=my[4].a[now_num];
@@ -342,6 +342,10 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 							my[now_type].ported[now_num]=0;
 							my[4].port_type[ship_num]=0;
 							my[4].port_num[ship_num]=0;
+							if(now_type==4){
+								my[my[4].port_type[now_num]].a[my[4].port_num[now_num]]=x;
+								my[my[4].port_type[now_num]].b[my[4].port_num[now_num]]=y;
+							}
 						}
 						else{
 							my[now_type].ported[now_num]=1;
@@ -407,5 +411,7 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 			}
 		}
 	}
+	clrmous(MouseX,MouseY);
+	delay(100);
 	return 0;
 }
