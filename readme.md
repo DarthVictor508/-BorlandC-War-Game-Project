@@ -46,3 +46,4 @@ lzz建立项目并上传文件，common和welcome有了一些修改，要不你�
 # 3.7
 1. lzz更新了```myturn.c```
 2. lzz更新了```anime.c```，现在它可以稳定运行了
+3. lzz更新了```common.h```和```common.c```
