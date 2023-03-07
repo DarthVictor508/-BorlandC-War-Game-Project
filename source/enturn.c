@@ -2,12 +2,12 @@
 #include<enturn.h>
 
 /*
-µĞ·½»ØºÏº¯Êı
+æ•Œæ–¹å›åˆå‡½æ•°
 */
 int enturn(struct unit my[], struct unit en[]) {
-	int en_atk[15] = {0};            //·¢³ö¹¥»÷µÄµĞ·½µ¥Î»ĞÅÏ¢
+	int en_atk[15] = {0};            //å‘å‡ºæ”»å‡»çš„æ•Œæ–¹å•ä½ä¿¡æ¯
 	struct ab_atk able[15];
-	en_search(my, en, en_atk, able);
+	en_p_search(my, en, en_atk, able);
 	en_print_atk(my, en, en_atk, able);
 	en_p_dis_blood(my, en, able);
 	return 1;
@@ -16,26 +16,26 @@ int enturn(struct unit my[], struct unit en[]) {
 
 
 /*
-µĞ·½ÅÚÌ¨ËÑË÷¹¥»÷µ¥Î»º¯Êı
+æ•Œæ–¹ç‚®å°æœç´¢æ”»å‡»å•ä½å‡½æ•°
 */
-void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk able[]) {
-	int i, j;                  //i´ú±íÅÚÌ¨ºÅĞÅÏ¢ £¬j´ú±í¹¥»÷µ¥Î»
-	int t, flag1 = 0;          //s[t]¼ÇÂ¼ÒÑ±»ËÑË÷µÄ¹¥»÷µ¥Î»  flag1=1 :¸Ãµ¥Î»ÒÑ±»ËÑË÷²¢´¢´æµÄµ¥Î»  flag1=0£ºÎ´±»´¢´æ
-	int s[15] = { 0 };         //¼ÇÂ¼ÒÑ±»ËÑË÷µÄµ¥Î» 
-	int n, flag2 = 0;          //flag1=1 :¸ÃµĞ·½µ¥Î»ÒÑ¹¥»÷  flag1=0£º¸ÃµĞ·½µ¥Î»Î´¹¥»÷
-	int m, k;                  //m²éÕÒÒÑ±»ËÑË÷µÄµ¥Î»
-	    //´¢´æ±¾»ØºÏ¹¥»÷µÄµ¥Î»
+void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk able[]) {
+	int i, j;                  //iä»£è¡¨ç‚®å°å·ä¿¡æ¯ ï¼Œjä»£è¡¨æ”»å‡»å•ä½
+	int t, flag1 = 0;          //s[t]è®°å½•å·²è¢«æœç´¢çš„æ”»å‡»å•ä½  flag1=1 :è¯¥å•ä½å·²è¢«æœç´¢å¹¶å‚¨å­˜çš„å•ä½  flag1=0ï¼šæœªè¢«å‚¨å­˜
+	int s[15] = { 0 };         //è®°å½•å·²è¢«æœç´¢çš„å•ä½ 
+	int n, flag2 = 0;          //flag1=1 :è¯¥æ•Œæ–¹å•ä½å·²æ”»å‡»  flag1=0ï¼šè¯¥æ•Œæ–¹å•ä½æœªæ”»å‡»
+	int m, k;                  //mæŸ¥æ‰¾å·²è¢«æœç´¢çš„å•ä½
+	    //å‚¨å­˜æœ¬å›åˆæ”»å‡»çš„å•ä½
 	t = k = n = 0;        
 
 
-	for (i = 0; i < 15; i++) {      //³õÊ¼»¯ 
+	for (i = 0; i < 15; i++) {      //åˆå§‹åŒ– 
 		able[i].x = 0;
 		able[i].y = 0;
 	}
 
 
-	for (i = 1; i <= en[2].num; i++) {    //¶ÔËùÓĞÅÚÌ¨½øĞĞ±éÀú    
-		for (j = 1; j <= 5; j++) {     //Ê×ÏÈËÑË÷·É»úµ¥Î»
+	for (i = 1; i <= en[2].num; i++) {    //å¯¹æ‰€æœ‰ç‚®å°è¿›è¡Œéå†    
+		for (j = 1; j <= 5; j++) {     //é¦–å…ˆæœç´¢é£æœºå•ä½
 			for (m = 0; m < t; m++) {
 				if (s[m] == j) {
 					flag1 = 1;
@@ -43,7 +43,7 @@ void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk ab
 				}
 				else flag1 = 0;
 			}
-			if (abs(my[3].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[3].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0) {
+			if (abs(my[3].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[3].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[3].hp[j]>0) {
 				able[k].x = my[3].a[j];
 				able[k].y = my[3].b[j];
 				able[k].code = j;
@@ -65,7 +65,7 @@ void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk ab
 	flag1 = 0;
 
 	if (n <= en[2].num) {
-		for (i = 1; i <= en[2].num; i++) {    //¶ÔËùÓĞÅÚÌ¨½øĞĞ±éÀú
+		for (i = 1; i <= en[2].num; i++) {    //å¯¹æ‰€æœ‰ç‚®å°è¿›è¡Œéå†
 			for (m = 0; m <= n; m++) {
 				if (en_atk[m] == i) {
 					flag2 = 1;
@@ -76,7 +76,7 @@ void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk ab
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 5; j++) {     //ËÑË÷Ì¹¿Ëµ¥Î»
+				for (j = 1; j <= 5; j++) {     //æœç´¢å¦å…‹å•ä½
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -85,7 +85,7 @@ void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk ab
 						}
 						else flag1 = 0;
 					}
-					if (abs(my[2].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[2].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0) {
+					if (abs(my[2].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[2].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[2].hp[j] > 0) {
 
 						able[k].x = my[2].a[j];
 						able[k].y = my[2].b[j];
@@ -110,7 +110,7 @@ void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk ab
 	flag1 = 0;
 
 	if (n <= en[2].num) {
-		for (i = 1; i <= en[2].num; i++) {    //¶ÔËùÓĞÅÚÌ¨½øĞĞ±éÀú
+		for (i = 1; i <= en[2].num; i++) {    //å¯¹æ‰€æœ‰ç‚®å°è¿›è¡Œéå†
 			for (m = 0; m <= n; m++) {
 				if (en_atk[m] == i) {
 					flag2 = 1;
@@ -121,7 +121,7 @@ void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk ab
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 7; j++) {     //ËÑË÷Ê¿±øµ¥Î»
+				for (j = 1; j <= 7; j++) {     //æœç´¢å£«å…µå•ä½
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -130,7 +130,7 @@ void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk ab
 						}
 						else flag1 = 0;
 					}
-					if (abs(my[1].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[1].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0) {
+					if (abs(my[1].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[1].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[1].hp[j] > 0) {
 
 						able[k].x = my[1].a[j];
 						able[k].y = my[1].b[j];
@@ -155,7 +155,7 @@ void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk ab
 	flag1 = 0;
 
 	if (n <= en[2].num) {
-		for (i = 1; i <= en[2].num; i++) {    //¶ÔËùÓĞÅÚÌ¨½øĞĞ±éÀú
+		for (i = 1; i <= en[2].num; i++) {    //å¯¹æ‰€æœ‰ç‚®å°è¿›è¡Œéå†
 			for (m = 0; m <= n; m++) {
 				if (en_atk[m] == i) {
 					flag2 = 1;
@@ -166,7 +166,7 @@ void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk ab
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 5; j++) {     //ËÑË÷ÔËÊä´¬µ¥Î»
+				for (j = 1; j <= 5; j++) {     //æœç´¢è¿è¾“èˆ¹å•ä½
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -175,7 +175,7 @@ void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk ab
 						}
 						else flag1 = 0;
 					}
-					if (abs(my[4].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[4].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0) {
+					if (abs(my[4].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[4].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[4].hp[j] > 0) {
 
 						able[k].x = my[4].a[j];
 						able[k].y = my[4].b[j];
@@ -200,7 +200,7 @@ void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk ab
 	flag1 = 0;
 
 	if (n <= en[2].num) {
-		for (i = 1; i <= en[2].num; i++) {    //¶ÔËùÓĞÅÚÌ¨½øĞĞ±éÀú
+		for (i = 1; i <= en[2].num; i++) {    //å¯¹æ‰€æœ‰ç‚®å°è¿›è¡Œéå†
 			for (m = 0; m <= n; m++) {
 				if (en_atk[m] == i) {
 					flag2 = 1;
@@ -211,7 +211,7 @@ void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk ab
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 5; j++) {     //ËÑË÷Ö§Ô®±øµ¥Î»
+				for (j = 1; j <= 5; j++) {     //æœç´¢æ”¯æ´å…µå•ä½
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -220,7 +220,7 @@ void en_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk ab
 						}
 						else flag1 = 0;
 					}
-					if (abs(my[5].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[5].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0) {
+					if (abs(my[5].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[5].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[5].hp[j] > 0) {
 
 						able[k].x = my[5].a[j];
 						able[k].y = my[5].b[j];
