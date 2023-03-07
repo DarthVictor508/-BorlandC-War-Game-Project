@@ -122,7 +122,7 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 				bfs(my[now_type],now_num,map_type,f,my,en,num_my,num_en); //搜索可移动到哪里
 				for(i=1;i<=9;i++){//输出带有可行位置的地图
 					for(j=1;j<=13;j++){
-						if(f[i][j]) setfillstyle(SOLID_FILL,RED);
+						if(f[i][j]) setfillstyle(SOLID_FILL,LIGHTRED);
 						else{
 							if(map_type[i][j]==0) setfillstyle(SOLID_FILL,GREEN);
 							if(map_type[i][j]==1) setfillstyle(SOLID_FILL,BLUE);
@@ -251,9 +251,14 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 						}
 						for(i=1;i<=num_en;i++){
 							for(j=1;j<=en[i].num;j++){
-								if(en[i].hp<=0) continue;
+								if(en[i].hp[j]<=0) continue;
 								if(en[i].a[j]==x&&en[i].b[j]==y){
-									//print_atk(my[now_type].x[now_num]+20,my[now_type].y[now_num]+10,en[i].x[j]+20,en[i].y[j]+10);
+									print_atk(my[now_type].x[now_num]+20,my[now_type].y[now_num]+10,en[i].x[j]+20,en[i].y[j]+10);
+									clrmous(MouseX,MouseY);
+									delay(100);
+									print_map(map_type);
+									print_my(my,num_my);
+									print_en(en);
 									en[i].hp[j]-=my[now_type].atk;
 									if(en[1].hp[1]<=0) return 1;
 								}
@@ -262,7 +267,6 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 						clrmous(MouseX,MouseY);
 						delay(100);
 						print_map(map_type);
-						printf("1\n");
 						print_en(en);
 						print_my(my,num_my);
 						my_turn();
@@ -399,7 +403,7 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 	for(i=1;i<=my[5].num;i++){
 		for(j=1;j<=num_my;j++){
 			for(k=1;k<=my[j].num;k++){
-				if(abs(my[j].a[k]-my[5].a[i])+abs(my[j].b[k]-my[5].b[i])<=my[5].max_attack) my[j].oil[k]+=200;					
+				if(abs(my[j].a[k]-my[5].a[i])+abs(my[j].b[k]-my[5].b[i])<=my[5].max_attack) my[j].oil[k]+=200;				
 			}
 		}
 	}
