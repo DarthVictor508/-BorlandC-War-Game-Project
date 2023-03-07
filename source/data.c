@@ -65,7 +65,7 @@ void rank(char *s,int cnt){
 	puthz(10,360,"欧根",32,40,BLACK);
 	puthz(475,455,"点击任意处结束游戏",16,18,BLACK);
 	puthz(422,5,"游戏结束",48,50,RED);
-	if(cnt!=100){
+	if(cnt!=20){
 		puthz(20,405,"您太巨了！",24,30,BLACK);
 		puthz(418,64,"您用了",16,18,BLACK);
 		setfillstyle(SOLID_FILL, WHITE);
