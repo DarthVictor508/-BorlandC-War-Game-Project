@@ -95,7 +95,7 @@ void info(struct unit x,int num,int op,struct unit my[],int butt){
 			puthz(562,393,"攻击",16,20,WHITE);
 		}
 		
-		if(x.type==4&&x.port_type[num]!=0){
+		if(x.type==4&&x.port_type[num]!=0&&my[x.port_type[num]].moved[x.port_num[num]]>0){
 			setfillstyle(SOLID_FILL,RED);
 			bar(528,388,636,414);
 			puthz(532,393,"调度船上单位",16,17,WHITE);
