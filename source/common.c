@@ -346,7 +346,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	en[3].a[2] = 7; en[3].b[2] = 5;	en[3].a[3] = 11; en[3].b[3] = 5;
 	en[3].a[4] = 10; en[3].b[4] = 7;
 
-	//敌方叛军信息
+	/*//敌方叛军信息
 	en[4].name = "叛军";
 	en[4].type = 4;
 	en[4].num = 6;
@@ -355,8 +355,8 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 		en[4].oil[i] = 1000;
 	}
 	en[4].atk = 200;
-	en[4].max_move = 2;
-	en[4].max_attack = 2;
+	en[4].max_move = 1;
+	en[4].max_attack = 1;
 
 	//叛军像素坐标
 	en[4].x[1] = 320 + 5; en[4].y[1] = 40 + 20;   en[4].x[2] = 360 + 5;  en[4].y[2] = 40 + 20;
@@ -385,7 +385,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 
 	//地图格子坐标
 	en[5].a[1] = 7; en[5].b[1] = 4; en[5].a[2] = 11; en[5].b[2] = 4;
-	en[5].a[3] = 7; en[5].b[3] = 6; en[5].a[4] = 11; en[5].b[4] = 6;
+	en[5].a[3] = 7; en[5].b[3] = 6; en[5].a[4] = 11; en[5].b[4] = 6;*/
 
 
 }
@@ -434,7 +434,7 @@ void  print_en(struct unit en[]) {
 
 /*******************
 打印我方单位
-lpc写的
+lzz写的
 ********************/
 void  print_my(struct unit my[], int num_my) {
 	int i, j;
@@ -448,7 +448,6 @@ void  print_my(struct unit my[], int num_my) {
 		}
 	}
 }
-
 
 /*******************
 教程残局
@@ -523,7 +522,4 @@ void ending( struct unit my[], struct unit en[], int num_my,int num_en) {
 
 	en[2].a[8] = 8; en[2].b[8] = 6;                 //8号炮台
 	en[2].x[8] = 280 + 5; en[2].y[8] = 200 + 20;
-
-
 }
-
