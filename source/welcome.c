@@ -347,10 +347,9 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 	clrmous(MouseX, MouseY);
 
 
-
+	setfillstyle(SOLID_FILL, BLACK);
 	bar(123, 383, 519, 480);                                     //步骤4
 	setfillstyle(SOLID_FILL, BLACK);
-
 	puthz(128, 388, "接下来将进入敌方回合，您无法进行操作", 16, 18, WHITE);
 	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
 	while (1) {
@@ -405,6 +404,21 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 	while (1) {
 		if(myturn(map_type, my, en, num_my, num_en))
 			break;
+	}
+	clrmous(MouseX, MouseY);
+
+
+	setfillstyle(SOLID_FILL, BLACK);                      //步骤7
+	bar(123, 383, 519, 480);
+	setfillstyle(SOLID_FILL, BLACK);
+	puthz(128, 388, "恭喜你完成教程，现在开始游戏吧" ,16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			break;
+		}
 	}
 	clrmous(MouseX, MouseY);
 }
