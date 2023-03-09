@@ -368,7 +368,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	en[4].a[1] = 9; en[4].b[1] = 2;   en[4].a[2] = 10;  en[4].b[2] = 2;
 	en[4].a[3] = 7; en[4].b[3] = 3;
 	en[4].a[4] = 7; en[4].b[4] = 7;
-	en[4].a[5] = 9; en[4].b[5] = 8;  en[4].a[6] = 10; en[4].b[6] = 8;
+	en[4].a[5] = 9; en[4].b[5] = 8;  en[4].a[6] = 10; en[4].b[6] = 8;*/
 
 	//地雷信息
 	en[5].name = "地雷";
@@ -385,7 +385,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 
 	//地图格子坐标
 	en[5].a[1] = 7; en[5].b[1] = 4; en[5].a[2] = 11; en[5].b[2] = 4;
-	en[5].a[3] = 7; en[5].b[3] = 6; en[5].a[4] = 11; en[5].b[4] = 6;*/
+	en[5].a[3] = 7; en[5].b[3] = 6; en[5].a[4] = 11; en[5].b[4] = 6;
 
 
 }
