@@ -282,5 +282,129 @@ void place(int(*map_type)[13+3], struct unit my[],struct unit en[],int num_my,in
 用于显示教程
 lpc写的
 ********************/
-void teach(){
+void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_my, int num_en) {
+	int i, j;
+	cleardevice();
+	clrmous(MouseX, MouseY);
+	setbkcolor(BLACK);
+	setfillstyle(SOLID_FILL, BLACK);
+	bar(0, 0, 640, 480);
+	print_map(map_type);
+	print_en(en);
+	print_UI();
+	setfillstyle(SOLID_FILL, BLACK);
+
+
+
+	bar(123, 383, 519, 480);                                        //步骤1
+	puthz(128, 388, "下面由我为您介绍游戏玩法", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	delay(100);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			clrmous(MouseX, MouseY);
+			break;
+		}
+	};
+
+
+	clrmous(MouseX, MouseY);
+	bar(123, 383, 519, 480);                                       //步骤2
+	setfillstyle(SOLID_FILL, BLACK);
+	puthz(128, 388, "首先请布置我方单位", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	delay(100);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			break;
+		}
+	}
+	clrmous(MouseX, MouseY);
+	place(map_type, my, en, num_my, num_en);
+	clrmous(MouseX, MouseY);
+
+
+
+	bar(123, 383, 519, 480);                                      //步骤3
+	setfillstyle(SOLID_FILL, BLACK);
+	puthz(128, 388, "接下来将进入我方回合，点击右下角对应的按钮，", 16, 18, WHITE);
+	puthz(128, 405, "您可以进行移动我方单位、对敌方单位发动进攻、", 16, 18, WHITE);
+	puthz(128, 422, "结束回合等操作", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	delay(100);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			break;
+		}
+	}
+	myturn(map_type, my, en, num_my, num_en);
+	clrmous(MouseX, MouseY);
+
+
+
+	bar(123, 383, 519, 480);                                     //步骤4
+	setfillstyle(SOLID_FILL, BLACK);
+
+	puthz(128, 388, "接下来将进入敌方回合，您无法进行操作", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			break;
+		}
+	}
+	clrmous(MouseX, MouseY);
+	enturn(map_type, my, en, num_my);
+	clrmous(MouseX, MouseY);
+
+	setfillstyle(SOLID_FILL, BLACK);
+	bar(123, 383, 519, 480);                                     //步骤5
+
+	puthz(128, 388, "经过几个回合后，我们进入到了决胜时刻", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			break;
+		}
+	}
+	clrmous(MouseX, MouseY);
+
+	cleardevice();
+	setbkcolor(BLACK);
+	setfillstyle(SOLID_FILL, BLACK);
+	bar(0, 0, 640, 480);
+	print_UI();
+
+	ending(my, en, num_my, num_en);              //步骤6
+
+	print_map(map_type);
+	print_my(my, num_my);
+	print_en(en);
+	setfillstyle(SOLID_FILL, BLACK);
+
+	bar(123, 383, 519, 480);
+	puthz(128, 388, "现在，消灭敌方主城，即可取得胜利", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			break;
+		}
+	}
+	clrmous(MouseX, MouseY);
+	while (1) {
+		if(myturn(map_type, my, en, num_my, num_en))
+			break;
+	}
+	clrmous(MouseX, MouseY);
 }
