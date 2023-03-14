@@ -78,6 +78,7 @@ void print_atk(int x, int y, int xx, int yy) {
 lpc写的
 ********************/
 void print_boom(int x, int y) {
+	x+=20,y+=10;
 	setcolor(RED);
 	setlinestyle(SOLID_LINE, 0, THICK_WIDTH);
 	line(x - 3, y + 15, x + 2, y + 9);
