@@ -286,13 +286,14 @@ void en_p_dis_blood(struct unit my[], struct unit en[], struct ab_atk able[]) {
 敌方地雷攻击函数（含动画）
 */
 
-void mine_boom(struct unit my[], struct unit en[],int num_my) {
-	int i, j,k;
+void mine_boom(struct unit my[], struct unit en[], int num_my) {
+	int i, j, k;
 	for (i = 1; i <= num_my; i++) {
 		if ((i == 3) || (i == 4)) continue;
 		for (j = 1; j <= my[i].num; j++) {
-			if (my[i].a[j] == en[5].a[1] && my[i].b[j] == en[5].b[1] && en[5].hp[1] > 0) {   
+			if (my[i].a[j] == en[5].a[1] && my[i].b[j] == en[5].b[1] && en[5].hp[1] > 0) {
 				print_boom(en[5].x[1], en[5].y[1]);           //一号雷爆炸
+				puthz(en[5].x[1], en[5].y[1], en[5].name, 16, 17, RED);
 				delay(500);
 				my[i].hp[j] -= en[5].atk;
 				en[5].hp[1] = 0;
@@ -300,6 +301,7 @@ void mine_boom(struct unit my[], struct unit en[],int num_my) {
 
 			if (my[i].a[j] == en[5].a[2] && my[i].b[j] == en[5].b[2] && en[5].hp[2] > 0) {
 				print_boom(en[5].x[2], en[5].y[2]);           //二号雷爆炸
+				puthz(en[5].x[2], en[5].y[2], en[5].name, 16, 17, RED);
 				delay(500);
 				my[i].hp[j] -= en[5].atk;
 				en[5].hp[2] = 0;
@@ -307,6 +309,7 @@ void mine_boom(struct unit my[], struct unit en[],int num_my) {
 
 			if (my[i].a[j] == en[5].a[3] && my[i].b[j] == en[5].b[3] && en[5].hp[3] > 0) {
 				print_boom(en[5].x[3], en[5].y[3]);           //三号雷爆炸
+				puthz(en[5].x[3], en[5].y[3], en[5].name, 16, 17, RED);
 				delay(500);
 				my[i].hp[j] -= en[5].atk;
 				en[5].hp[3] = 0;
@@ -314,6 +317,7 @@ void mine_boom(struct unit my[], struct unit en[],int num_my) {
 
 			if (my[i].a[j] == en[5].a[4] && my[i].b[j] == en[5].b[4] && en[5].hp[4] > 0) {
 				print_boom(en[5].x[4], en[5].y[4]);          //四号雷爆炸
+				puthz(en[5].x[4], en[5].y[4], en[5].name, 16, 17, RED);
 				delay(500);
 				my[i].hp[j] -= en[5].atk;
 				en[5].hp[4] = 0;
