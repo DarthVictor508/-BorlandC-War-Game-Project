@@ -33,6 +33,8 @@ void main(){
 		puthz(122,361,"当前为第",16,18,WHITE);
 		puthz(227,361,"回合",16,18,WHITE);
 		nts(cnt,tmp);
+		setfillstyle(SOLID_FILL,BLACK);
+		bar(196,361,226,379);
 		setcolor(WHITE);
 		settextstyle(DEFAULT_FONT, HORIZ_DIR, 2);
 		settextjustify(LEFT_TEXT, TOP_TEXT);
