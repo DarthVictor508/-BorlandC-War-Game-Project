@@ -105,4 +105,23 @@ void rank(char *s,int cnt){
 			break;
 		}
 	}
+	
+	clrmous(MouseX,MouseY);
+	delay(100);
+	cleardevice();
+	setbkcolor(BLACK);
+	setfillstyle(SOLID_FILL,WHITE);
+	bar(0,0,640,480);
+	puthz(150,100,"感谢您的游玩！",48,50,BLACK);
+	puthz(140,180,"制作人：华中科技大学人工智能与自动化学院",16,18,BLACK);
+	puthz(257,220,"刘政孜，李鹏程",16,18,BLACK);
+	puthz(248,260,"点击任意位置退出",16,18,BLACK);
+	while(1){
+		newmouse(&MouseX,&MouseY,&press);
+		mouse(MouseX,MouseY);
+		if(mouse_press(0,0,640,480)==1){
+			delay(100);
+			break;
+		}
+	}
 }
