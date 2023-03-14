@@ -56,7 +56,7 @@ void bfs(struct unit x,int num,int (*map_type)[13+3],int (*f)[13+3],struct unit 
 				}
 				for(j=1;j<=num_en;j++){
 					for(k=1;k<=en[j].num;k++){
-						if(en[j].hp[k]<=0) continue;
+						if(en[j].hp[k]<=0||en[j].type==5) continue;
 						if(en[j].b[k]==nx&&en[j].a[k]==ny){
 							judge=0;
 							break;
@@ -205,11 +205,12 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 				for(i=1;i<=num_en;i++){
 					if(en[i].type==5) continue;
 					for(j=1;j<=en[i].num;j++){
+						if(en[i].hp[j]<=0) continue;
 						if(abs(my[now_type].a[now_num]-en[i].a[j])+abs(my[now_type].b[now_num]-en[i].b[j])<=my[now_type].max_attack)
 							f[en[i].b[j]][en[i].a[j]]=1;
 					}
 				}
-				for(i=1;i<=9;i++){//输出带有可行位置的地图
+				for(i=1;i<=9;i++){//输出带有可攻击位置的地图
 					for(j=1;j<=13;j++){
 						if(f[i][j]) setfillstyle(SOLID_FILL,LIGHTMAGENTA);
 						else{
@@ -251,7 +252,7 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 						}
 						for(i=1;i<=num_en;i++){
 							for(j=1;j<=en[i].num;j++){
-								if(en[i].hp[j]<=0) continue;
+								if(en[i].hp[j]<=0||en[i].type==5) continue;
 								if(en[i].a[j]==x&&en[i].b[j]==y){
 									print_atk(my[now_type].x[now_num]+20,my[now_type].y[now_num]+10,en[i].x[j]+20,en[i].y[j]+10);
 									clrmous(MouseX,MouseY);
@@ -388,7 +389,7 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 			}
 			for(i=1;i<=num_en;i++){
 				for(j=1;j<=en[i].num;j++){
-					if(en[i].hp[j]<=0||en[i].oil[j]<=0) continue;
+					if(en[i].hp[j]<=0||en[i].oil[j]<=0||en[i].type==5) continue;
 					if(en[i].a[j]==x&&en[i].b[j]==y&&half==1){
 						now_op=1;
 						now_type=en[i].type;
