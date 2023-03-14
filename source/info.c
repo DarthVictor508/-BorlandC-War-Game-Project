@@ -54,9 +54,9 @@ void info(struct unit x,int num,int op,struct unit my[],int butt){
 	gotoxy(77,7);
 	printf("%d",x.hp[num]);
 	
-	puthz(525,126,"剩余石油：",16,17,WHITE);
-	gotoxy(77,9);
-	printf("%d",x.oil[num]);
+	puthz(525,126,"攻击力：",16,17,WHITE);
+	gotoxy(75,9);
+	printf("%d",x.atk);
 	
 	puthz(525,157,"行动能力：",16,17,WHITE);
 	gotoxy(77,11);
@@ -66,9 +66,11 @@ void info(struct unit x,int num,int op,struct unit my[],int butt){
 	gotoxy(73,13);
 	printf("%d",x.max_attack);
 	
-	puthz(525,221,"攻击力：",16,17,WHITE);
-	gotoxy(75,15);
-	printf("%d",x.atk);
+	if(!op){
+		puthz(525,221,"剩余物资：",16,17,WHITE);
+		gotoxy(77,15);
+		printf("%d",x.oil[num]);
+	}
 	
 	if(x.type==4){
 		puthz(525,252,"船上单位：",16,17,WHITE);
