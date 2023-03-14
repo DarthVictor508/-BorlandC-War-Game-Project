@@ -50,3 +50,5 @@ lzz建立项目并上传文件，common和welcome有了一些修改，要不你�
 4. lpc更新```enturn.c```和```enturn.h```,```anime.c```和```anime.h```
 # 3.9
 1. lpc更新```common.c```和```welcome.c``` 、  ```common.h```  ```welcome.h```  加入教程
+## 3.14
+1. lzz把所有项目都更新了一遍，记为完成版1.0
