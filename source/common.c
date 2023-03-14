@@ -287,7 +287,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//敌方主城所有信息
 	en[1].name = "主城";
 	en[1].type = 1;
-	en[1].hp[1] = 1000;
+	en[1].hp[1] = 2000;
 	en[1].num = 1;
 	en[1].oil[1] = 5000;
 	en[1].atk = 100;
@@ -424,11 +424,11 @@ void  print_en(struct unit en[]) {
 		}
 	}           //打印敌方城墙
 
-	for (i = 1; i <= en[4].num; i++) {
+	/*for (i = 1; i <= en[4].num; i++) {
 		if (en[4].hp[i] > 0) {
 			puthz(en[4].x[i], en[4].y[i], en[4].name, 16, 17, BLACK);
 		}
-	}           //打印敌方叛军
+	}           //打印敌方叛军*/
 
 }
 
