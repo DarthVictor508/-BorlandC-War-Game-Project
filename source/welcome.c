@@ -296,72 +296,164 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 
 
 
-	bar(123, 383, 519, 480);                                        //步骤1
+	bar(123, 383, 519, 480); //步骤1
 	puthz(128, 388, "下面由我为您介绍游戏玩法", 16, 18, WHITE);
 	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
-	delay(100);
 	while (1) {
 		newmouse(&MouseX, &MouseY, &press);
 		mouse(MouseX, MouseY);
 		if (mouse_press(0, 0, 640, 480) == 1) {
-			clrmous(MouseX, MouseY);
+			delay(100);
 			break;
 		}
 	};
 
 
-	clrmous(MouseX, MouseY);
-	bar(123, 383, 519, 480);                                       //步骤2
-	setfillstyle(SOLID_FILL, BLACK);
-	puthz(128, 388, "首先请布置我方单位", 16, 18, WHITE);
-	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	clrmous(MouseX, MouseY); //步骤2
 	delay(100);
+	setfillstyle(SOLID_FILL, BLACK);
+	bar(123, 383, 519, 480);  
+	puthz(128, 388, "首先，您可以布置我方单位的初始位置", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
 	while (1) {
 		newmouse(&MouseX, &MouseY, &press);
 		mouse(MouseX, MouseY);
 		if (mouse_press(0, 0, 640, 480) == 1) {
+			delay(100);
+			break;
+		}
+	}
+	
+	
+	clrmous(MouseX, MouseY);
+	delay(100);
+	setfillstyle(SOLID_FILL, BLACK);
+	bar(123, 383, 519, 480);
+	puthz(128, 388, "需要注意的是，在战场上每个作战单位都需要物资", 16, 18, WHITE);
+	puthz(128, 405, "才能生存，每回合结束时每个我方作战单位都会消", 16, 18, WHITE);
+	puthz(128, 422, "耗一定物资，物资被消耗完时作战单位也会死亡", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			delay(100);
+			break;
+		}
+	}
+	
+	
+	clrmous(MouseX, MouseY);
+	delay(100);
+	setfillstyle(SOLID_FILL, BLACK);
+	bar(123, 383, 519, 480);
+	puthz(128, 388, "而我们负责后勤保障的支援兵能为一定范围内的作", 16, 18, WHITE);
+	puthz(128, 405, "战单位补充物资。所以，你需要注意支援兵的穿插", 16, 18, WHITE);
+	puthz(128, 422, "摆放", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			delay(100);
+			break;
+		}
+	}
+	
+	
+	clrmous(MouseX, MouseY);
+	delay(100);
+	setfillstyle(SOLID_FILL, BLACK);
+	bar(123, 383, 519, 480);
+	puthz(128, 388, "哦，对了，我们接到情报说敌人在某些位置摆放了", 16, 18, WHITE);
+	puthz(128, 405, "地雷。你在地图上看不见它们，但它们就在那里，", 16, 18, WHITE);
+	puthz(128, 422, "等着你的陆地单位踩上去的时候炸你一下，小心点", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			delay(100);
+			break;
+		}
+	}
+	
+	
+	clrmous(MouseX, MouseY);
+	delay(100);
+	setfillstyle(SOLID_FILL, BLACK);
+	bar(123, 383, 519, 480);
+	puthz(128, 388, "现在，开始布置你的兵力吧", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			delay(100);
 			break;
 		}
 	}
 	clrmous(MouseX, MouseY);
+	delay(100);
 	place(map_type, my, en, num_my, num_en);
 	clrmous(MouseX, MouseY);
-
-
-
-	bar(123, 383, 519, 480);                                      //步骤3
-	setfillstyle(SOLID_FILL, BLACK);
-	puthz(128, 388, "接下来将进入我方回合，点击右下角对应的按钮，", 16, 18, WHITE);
-	puthz(128, 405, "您可以进行移动我方单位、对敌方单位发动进攻、", 16, 18, WHITE);
-	puthz(128, 422, "结束回合等操作", 16, 18, WHITE);
-	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
 	delay(100);
+
+
+	                                      
+	setfillstyle(SOLID_FILL, BLACK);//步骤3
+	bar(123, 383, 519, 480);
+	puthz(128, 388, "接下来将进入我方回合，选中单位后点击右下角对", 16, 18, WHITE);
+	puthz(128, 405, "应的按钮，您可以进行移动我方单位、对敌方单位", 16, 18, WHITE);
+	puthz(128, 422, "发动进攻、结束回合等操作", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
 	while (1) {
 		newmouse(&MouseX, &MouseY, &press);
 		mouse(MouseX, MouseY);
 		if (mouse_press(0, 0, 640, 480) == 1) {
+			delay(100);
+			break;
+		}
+	}
+	
+	
+	setfillstyle(SOLID_FILL, BLACK);
+	bar(123, 383, 519, 480);
+	puthz(128, 388, "在一个回合中，你的一个作战单位只能攻击一", 16, 18, WHITE);
+	puthz(128, 405, "次，移动一次", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			delay(100);
 			break;
 		}
 	}
 	myturn(map_type, my, en, num_my, num_en);
 	clrmous(MouseX, MouseY);
+	delay(100);
 
 
-	setfillstyle(SOLID_FILL, BLACK);
-	bar(123, 383, 519, 480);                                     //步骤4
-	setfillstyle(SOLID_FILL, BLACK);
-	puthz(128, 388, "接下来将进入敌方回合，您无法进行操作", 16, 18, WHITE);
+
+	                                     
+	setfillstyle(SOLID_FILL, BLACK);//步骤4
+	bar(123, 383, 519, 480);
+	puthz(128, 388, "接下来将进入敌方回合，您将无法进行操作", 16, 18, WHITE);
 	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
 	while (1) {
 		newmouse(&MouseX, &MouseY, &press);
 		mouse(MouseX, MouseY);
 		if (mouse_press(0, 0, 640, 480) == 1) {
+			delay(100);
 			break;
 		}
 	}
 	clrmous(MouseX, MouseY);
+	delay(100);
 	enturn(map_type, my, en, num_my);
 	clrmous(MouseX, MouseY);
+	delay(100);
 
 	setfillstyle(SOLID_FILL, BLACK);
 	bar(123, 383, 519, 480);                                     //步骤5
@@ -372,10 +464,12 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 		newmouse(&MouseX, &MouseY, &press);
 		mouse(MouseX, MouseY);
 		if (mouse_press(0, 0, 640, 480) == 1) {
+			delay(100);
 			break;
 		}
 	}
 	clrmous(MouseX, MouseY);
+	delay(100);
 
 	cleardevice();
 	setbkcolor(BLACK);
@@ -406,12 +500,10 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 			break;
 	}
 	clrmous(MouseX, MouseY);
-
-
-	setfillstyle(SOLID_FILL, BLACK);                      //步骤7
-	bar(123, 383, 519, 480);
+	delay(100);
 	setfillstyle(SOLID_FILL, BLACK);
-	puthz(128, 388, "恭喜你完成教程，现在开始游戏吧" ,16, 18, WHITE);
+	bar(123, 383, 519, 480);
+	puthz(128, 388, "教程结束了，即将开始正式战斗！", 16, 18, WHITE);
 	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
 	while (1) {
 		newmouse(&MouseX, &MouseY, &press);
@@ -421,4 +513,5 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 		}
 	}
 	clrmous(MouseX, MouseY);
+	delay(100);
 }
