@@ -16,7 +16,7 @@ int enturn(int (*map_type)[13 + 3],struct unit my[], struct unit en[],int num_my
 
 	for (i = 1; i <= 3; i++) {
 		for (j = 1; j <= my[i].num; j++) {
-			if (my[i].hp[j] <= 0) {
+			if (my[i].hp[j] <= 0 || my[i].oil[j]<=0) {
 				dea_my++;
 			}
 		}
@@ -53,7 +53,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 				}
 				else flag1 = 0;
 			}
-			if (abs(my[3].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[3].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[3].hp[j]>0 && en[2].hp[i]>0) {
+			if (abs(my[3].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[3].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[3].hp[j]>0 && my[3].oil[j]>0&& en[2].hp[i]>0) {
 				able[k].x = my[3].a[j];
 				able[k].y = my[3].b[j];
 				able[k].code = j;
@@ -95,7 +95,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 						}
 						else flag1 = 0;
 					}
-					if (abs(my[2].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[2].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[2].hp[j] > 0 && en[2].hp[i] > 0) {
+					if (abs(my[2].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[2].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[2].hp[j] > 0 && my[2].oil[j] > 0 && en[2].hp[i] > 0) {
 
 						able[k].x = my[2].a[j];
 						able[k].y = my[2].b[j];
@@ -140,7 +140,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 						}
 						else flag1 = 0;
 					}
-					if (abs(my[1].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[1].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[1].hp[j] > 0 && en[2].hp[i] > 0) {
+					if (abs(my[1].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[1].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[1].hp[j] > 0&& my[1].oil[j] > 0&& en[2].hp[i] > 0) {
 
 						able[k].x = my[1].a[j];
 						able[k].y = my[1].b[j];
@@ -185,7 +185,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 						}
 						else flag1 = 0;
 					}
-					if (abs(my[4].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[4].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[4].hp[j] > 0 && en[2].hp[i] > 0) {
+					if (abs(my[4].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[4].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[4].hp[j] > 0&&my[4].oil[j] > 0 && en[2].hp[i] > 0) {
 
 						able[k].x = my[4].a[j];
 						able[k].y = my[4].b[j];
@@ -230,7 +230,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 						}
 						else flag1 = 0;
 					}
-					if (abs(my[5].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[5].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[5].hp[j] > 0 && en[2].hp[i] > 0) {
+					if (abs(my[5].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[5].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[5].hp[j] > 0&&my[5].oil[j] > 0 && en[2].hp[i] > 0) {
 
 						able[k].x = my[5].a[j];
 						able[k].y = my[5].b[j];
@@ -262,7 +262,7 @@ void en_print_atk(struct unit my[], struct unit en[], int en_atk[], struct ab_at
 		print_map(map_type);
 		print_my(my, num_my);
 		print_en(en);
-		print_atk(en[2].x[en_atk[i]], en[2].y[en_atk[i]], able[i].x * 40-20 , able[i].y * 40-20 );
+		print_atk(en[2].x[en_atk[i]]+20, en[2].y[en_atk[i]]+10, able[i].x * 40-20 , able[i].y * 40-20 );
 		delay(100);
 	}
 }
