@@ -3,12 +3,13 @@
 
 /*
 敌方回合函数
+lpc写的
 */
 int enturn(int (*map_type)[13 + 3],struct unit my[], struct unit en[],int num_my) {
-	int en_atk[15] = {0};            //发出攻击的敌方单位信息
+	int en_atk[15] = {0}; //发出攻击的敌方单位信息
 	struct ab_atk able[15];
 	int i,j,dea_my=0;
-	en_turn();                    //更新侧边栏
+	en_turn(); //更新侧边栏
 	mine_boom(my, en, num_my);
 	en_p_search(my, en, en_atk, able);
 	en_print_atk(my, en, en_atk, able,num_my, map_type);
@@ -21,12 +22,13 @@ int enturn(int (*map_type)[13 + 3],struct unit my[], struct unit en[],int num_my
 			}
 		}
 	}
-	if (dea_my == (my[1].num + my[2].num + my[3].num)) return 0;  //表示游戏失败
-	return 1;           //游戏继续
+	if (dea_my == (my[1].num + my[2].num + my[3].num)) return 0; //表示游戏失败
+	return 1; //游戏继续
 }
 
 /*
 敌方炮台搜索攻击单位函数
+lpc写的
 */
 void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk able[]) {
 	int i, j;                  //i代表炮台号信息 ，j代表攻击单位
@@ -34,18 +36,18 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 	int s[15] = { 0 };         //记录已被搜索的单位 
 	int n, flag2 = 0;          //flag1=1 :该敌方单位已攻击  flag1=0：该敌方单位未攻击
 	int m, k;                  //m查找已被搜索的单位
-	    //储存本回合攻击的单位
+	//储存本回合攻击的单位
 	t = k = n = 0;        
 
 
-	for (i = 0; i < 15; i++) {      //初始化 
+	for (i = 0; i < 15; i++) { //初始化 
 		able[i].x = 0;
 		able[i].y = 0;
 	}
 
 
-	for (i = 1; i <= en[2].num; i++) {    //对所有炮台进行遍历    
-		for (j = 1; j <= 5; j++) {     //首先搜索飞机单位
+	for (i = 1; i <= en[2].num; i++) { //对所有炮台进行遍历    
+		for (j = 1; j <= 5; j++) { //首先搜索飞机单位
 			for (m = 0; m < t; m++) {
 				if (s[m] == j) {
 					flag1 = 1;
@@ -75,7 +77,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 	flag1 = 0;
 
 	if (n <= en[2].num) {
-		for (i = 1; i <= en[2].num; i++) {    //对所有炮台进行遍历
+		for (i = 1; i <= en[2].num; i++) { //对所有炮台进行遍历
 			for (m = 0; m <= n; m++) {
 				if (en_atk[m] == i) {
 					flag2 = 1;
@@ -86,7 +88,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 5; j++) {     //搜索坦克单位
+				for (j = 1; j <= 5; j++) { //搜索坦克单位
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -120,7 +122,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 	flag1 = 0;
 
 	if (n <= en[2].num) {
-		for (i = 1; i <= en[2].num; i++) {    //对所有炮台进行遍历
+		for (i = 1; i <= en[2].num; i++) { //对所有炮台进行遍历
 			for (m = 0; m <= n; m++) {
 				if (en_atk[m] == i) {
 					flag2 = 1;
@@ -131,7 +133,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 7; j++) {     //搜索士兵单位
+				for (j = 1; j <= 7; j++) { //搜索士兵单位
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -165,7 +167,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 	flag1 = 0;
 
 	if (n <= en[2].num) {
-		for (i = 1; i <= en[2].num; i++) {    //对所有炮台进行遍历
+		for (i = 1; i <= en[2].num; i++) { //对所有炮台进行遍历
 			for (m = 0; m <= n; m++) {
 				if (en_atk[m] == i) {
 					flag2 = 1;
@@ -176,7 +178,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 5; j++) {     //搜索运输船单位
+				for (j = 1; j <= 5; j++) { //搜索运输船单位
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -221,7 +223,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 5; j++) {     //搜索支援兵单位
+				for (j = 1; j <= 5; j++) { //搜索支援兵单位
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -253,6 +255,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 
 /*
 打印敌方炮台攻击动画函数
+lpc写的
 */
 void en_print_atk(struct unit my[], struct unit en[], int en_atk[], struct ab_atk able[],int num_my, int(*map_type)[13 + 3]) {
 	int i;
@@ -270,6 +273,7 @@ void en_print_atk(struct unit my[], struct unit en[], int en_atk[], struct ab_at
 
 /*
 扣除我方单位被炮台攻击血量函数
+lpc写的
 */
 void en_p_dis_blood(struct unit my[], struct unit en[], struct ab_atk able[]) {
 	int i,j;
@@ -284,6 +288,7 @@ void en_p_dis_blood(struct unit my[], struct unit en[], struct ab_atk able[]) {
 
 /*
 敌方地雷攻击函数（含动画）
+lpc写的
 */
 
 void mine_boom(struct unit my[], struct unit en[], int num_my) {

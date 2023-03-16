@@ -411,24 +411,24 @@ void  print_en(struct unit en[]) {
 	int i;
 	if (en[1].hp[1] > 0) {
 		puthz(en[1].x[1], en[1].y[1], en[1].name, 16, 17, RED);
-	}			 //	打印敌方主城
+	} //打印敌方主城
 	for (i = 1; i <= en[2].num; i++) {
 		if (en[2].hp[i] > 0) {
 			puthz(en[2].x[i], en[2].y[i], en[2].name, 16, 17, BLACK);
 		}
-	}           // 打印敌方炮台
+	} //打印敌方炮台
 
 	for (i = 1; i <= en[3].num; i++) {
 		if (en[3].hp[i] > 0) {
 			puthz(en[3].x[i], en[3].y[i], en[3].name, 16, 17, BLACK);
 		}
-	}           //打印敌方城墙
+	} //打印敌方城墙
 
 	/*for (i = 1; i <= en[4].num; i++) {
 		if (en[4].hp[i] > 0) {
 			puthz(en[4].x[i], en[4].y[i], en[4].name, 16, 17, BLACK);
 		}
-	}           //打印敌方叛军*/
+	} //打印敌方叛军*/
 
 }
 
@@ -456,7 +456,7 @@ lpc写的
 void ending( struct unit my[], struct unit en[], int num_my,int num_en) {
 	int i, j;
 
-	for (i = 1; i <= my[1].num; i++) {    //去掉我方多余单位
+	for (i = 1; i <= my[1].num; i++) { //去掉我方多余单位
 		my[1].hp[i] = 0;
 		my[1].oil[i] = 1000;
 	}
@@ -479,7 +479,7 @@ void ending( struct unit my[], struct unit en[], int num_my,int num_en) {
 
 	
 
-	for (i = 1; i <= en[2].num; i++) {    //去掉敌方多余单位
+	for (i = 1; i <= en[2].num; i++) { //去掉敌方多余单位
 		en[2].hp[i] = 0;
 		en[2].oil[i] = 5000;
 	}
@@ -505,21 +505,21 @@ void ending( struct unit my[], struct unit en[], int num_my,int num_en) {
 	en[2].hp[5] = 100;
 	en[2].hp[8] = 100;
 	
-	my[3].a[1] = 9;  my[3].b[1] = 3;    //飞机坐标
+	my[3].a[1] = 9;  my[3].b[1] = 3; //飞机坐标
 	my[3].x[1] = (my[3].a[1] - 1) * 40 + 2;   my[3].y[1] = (my[3].b[1] - 1) * 40 + 2;
 
-	my[2].a[1] = 9;  my[2].b[1] = 4;    //坦克坐标
+	my[2].a[1] = 9;  my[2].b[1] = 4; //坦克坐标
 	my[2].x[1] = (my[2].a[1] - 1) * 40 + 2;   my[2].y[1] = (my[2].b[1] - 1) * 40 + 22;
 
-	my[1].a[1] = 7;  my[1].b[1] = 5;    //士兵坐标
+	my[1].a[1] = 7;  my[1].b[1] = 5; //士兵坐标
 	my[1].x[1] = (my[1].a[1] - 1) * 40 + 2;   my[1].y[1] = (my[1].b[1] - 1) * 40 + 22;
 
 	en[2].a[3] = 8; en[2].b[3] = 4;
-	en[2].x[3] = 280 + 5; en[2].y[3] = 120 + 20;     //3号炮台
+	en[2].x[3] = 280 + 5; en[2].y[3] = 120 + 20; //3号炮台
 
 	en[2].a[5] = 10; en[2].b[5] = 4;
-	en[2].x[5] = 360 + 5; en[2].y[5] = 120 + 20;    //5号炮台
+	en[2].x[5] = 360 + 5; en[2].y[5] = 120 + 20; //5号炮台
 
-	en[2].a[8] = 8; en[2].b[8] = 6;                 //8号炮台
+	en[2].a[8] = 8; en[2].b[8] = 6; //8号炮台
 	en[2].x[8] = 280 + 5; en[2].y[8] = 200 + 20;
 }
