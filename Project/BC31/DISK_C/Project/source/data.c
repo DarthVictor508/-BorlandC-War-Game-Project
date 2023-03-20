@@ -22,8 +22,15 @@ int exist(char *s){
 lzzÐ´µÄ
 ********************/
 void rank(char *s,int cnt){
-	int n,grd[20],i,j,jud=0,t,fin[20],r;
-	char name[20][20],temp[20];
+	int n;
+	int grd[20];
+	int i,j;
+	int jud=0;
+	int t;
+	int fin[20];
+	int r;
+	char name[20][20];
+	char temp[20];
 	FILE *fp;
 	fp=fopen("source\\data.txt","r");
 	fscanf(fp,"%d",&n);
@@ -36,12 +43,19 @@ void rank(char *s,int cnt){
 		if(jud&&strcmp(name[i],s)==0) grd[i]=(grd[i]>cnt?cnt:grd[i]);
 	}
 	fclose(fp);
-	if(!jud) strcpy(name[++n],s),grd[n]=cnt;
+	if(!jud){
+		strcpy(name[++n],s);
+		grd[n]=cnt;
+	}
 	for(i=1;i<=n-1;i++){
 		for(j=i+1;j<=n;j++){
 			if(grd[i]>grd[j]){
-				t=grd[i],grd[i]=grd[j],grd[j]=t;
-				strcpy(temp,name[i]),strcpy(name[i],name[j]),strcpy(name[j],temp);
+				t=grd[i];
+				grd[i]=grd[j];
+				grd[j]=t;
+				strcpy(temp,name[i]);
+				strcpy(name[i],name[j]);
+				strcpy(name[j],temp);
 			}
 		}
 	}
