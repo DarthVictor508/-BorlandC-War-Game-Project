@@ -199,7 +199,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//我方士兵所有信息
 	my[1].name = "士兵";
 	my[1].type = 1;
-	my[1].num = 3;
+	my[1].num = 6;
 	for (i = 1; i <= my[1].num; i++) {
 		my[1].hp[i] = 100;
 		my[1].oil[i] = 2000;
@@ -216,7 +216,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//我方坦克所有信息
 	my[2].name = "坦克";
 	my[2].type = 2;
-	my[2].num = 2;
+	my[2].num = 3;
 	for (i = 1; i <= my[2].num; i++) {
 		my[2].hp[i] = 500;
 		my[2].oil[i] = 200;
@@ -233,7 +233,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//我方飞机所有信息
 	my[3].name = "飞机";
 	my[3].type = 3;
-	my[3].num = 5;
+	my[3].num = 4;
 	for (i = 1; i <= my[3].num; i++) {
 		my[3].hp[i] = 250;
 		my[3].oil[i] = 500;
@@ -250,7 +250,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//我方运输船所有信息
 	my[4].name = "运输船";
 	my[4].type = 4;
-	my[4].num = 1;
+	my[4].num = 2;
 	for (i = 1; i <= my[4].num; i++) {
 		my[4].hp[i] = 400;
 		my[4].oil[i] = 300;
@@ -287,7 +287,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//敌方主城所有信息
 	en[1].name = "主城";
 	en[1].type = 1;
-	en[1].hp[1] = 2000;
+	en[1].hp[1] = 1000;
 	en[1].num = 1;
 	en[1].oil[1] = 5000;
 	en[1].atk = 100;
@@ -346,7 +346,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	en[3].a[2] = 7; en[3].b[2] = 5;	en[3].a[3] = 11; en[3].b[3] = 5;
 	en[3].a[4] = 10; en[3].b[4] = 7;
 
-	/*//敌方叛军信息
+	//敌方叛军信息
 	en[4].name = "叛军";
 	en[4].type = 4;
 	en[4].num = 6;
@@ -355,8 +355,8 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 		en[4].oil[i] = 1000;
 	}
 	en[4].atk = 200;
-	en[4].max_move = 1;
-	en[4].max_attack = 1;
+	en[4].max_move = 2;
+	en[4].max_attack = 2;
 
 	//叛军像素坐标
 	en[4].x[1] = 320 + 5; en[4].y[1] = 40 + 20;   en[4].x[2] = 360 + 5;  en[4].y[2] = 40 + 20;
@@ -368,7 +368,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	en[4].a[1] = 9; en[4].b[1] = 2;   en[4].a[2] = 10;  en[4].b[2] = 2;
 	en[4].a[3] = 7; en[4].b[3] = 3;
 	en[4].a[4] = 7; en[4].b[4] = 7;
-	en[4].a[5] = 9; en[4].b[5] = 8;  en[4].a[6] = 10; en[4].b[6] = 8;*/
+	en[4].a[5] = 9; en[4].b[5] = 8;  en[4].a[6] = 10; en[4].b[6] = 8;
 
 	//地雷信息
 	en[5].name = "地雷";
@@ -428,13 +428,13 @@ void  print_en(struct unit en[]) {
 		if (en[4].hp[i] > 0) {
 			puthz(en[4].x[i], en[4].y[i], en[4].name, 16, 17, BLACK);
 		}
-	}           //打印敌方叛军*/
+	}   */        //打印敌方叛军
 
 }
 
 /*******************
 打印我方单位
-lzz写的
+lpc写的
 ********************/
 void  print_my(struct unit my[], int num_my) {
 	int i, j;
@@ -448,6 +448,7 @@ void  print_my(struct unit my[], int num_my) {
 		}
 	}
 }
+
 
 /*******************
 教程残局
@@ -522,4 +523,6 @@ void ending( struct unit my[], struct unit en[], int num_my,int num_en) {
 
 	en[2].a[8] = 8; en[2].b[8] = 6;                 //8号炮台
 	en[2].x[8] = 280 + 5; en[2].y[8] = 200 + 20;
+
+
 }
