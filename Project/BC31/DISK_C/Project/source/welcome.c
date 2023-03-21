@@ -105,6 +105,9 @@ int welcome(char *s){
 		}
 	}
 	
+	while(kbhit()){
+		getch();
+	}
 	clrmous(MouseX,MouseY);
 	delay(100);
 	setfillstyle(SOLID_FILL,BLACK);
