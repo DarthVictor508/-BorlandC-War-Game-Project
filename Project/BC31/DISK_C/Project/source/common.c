@@ -291,7 +291,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//敌方主城所有信息
 	en[1].name = "主城";
 	en[1].type = 1;
-	en[1].hp[1] = 1000;
+	en[1].hp[1] = 2000;
 	en[1].num = 1;
 	en[1].oil[1] = 5000;
 	en[1].atk = 100;
