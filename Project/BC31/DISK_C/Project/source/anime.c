@@ -11,7 +11,7 @@ void print_atk(int x, int y, int xx, int yy) {
 	int nx, ny;
 	int lx, ly;
 	int i;
-	int hz = 10;
+	int hz = 8;
 	/*size=imagesize(x-10,y-10,x+10,y+10);
 	buff=malloc(size);
 	getimage(x-10,y-10,x+10,y+10,buff);*/
@@ -78,7 +78,8 @@ void print_atk(int x, int y, int xx, int yy) {
 lpcÐ´µÄ
 ********************/
 void print_boom(int x, int y) {
-	x+=20,y+=10;
+	x+=20;
+	y+=10;
 	setcolor(RED);
 	setlinestyle(SOLID_LINE, 0, THICK_WIDTH);
 	line(x - 3, y + 15, x + 2, y + 9);

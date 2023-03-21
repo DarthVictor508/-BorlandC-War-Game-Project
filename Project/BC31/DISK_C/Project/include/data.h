@@ -4,6 +4,6 @@
 #include "common.h"
 
 int exist(char *s);
-void rank(char *s,int cnt);
+int rank(char *s,int cnt);
 
 #endif

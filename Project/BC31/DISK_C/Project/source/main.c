@@ -23,27 +23,30 @@ void main(){
 
 	init(map_type,my,en);
 	if(welcome(name)) teach(map_type,my,en,num_my,num_en);
-	init(map_type,my,en);
-	print_UI();
-	print_map(map_type);
-	print_en(en);
-	place(map_type,my,en,num_my,num_en);
-	while(++cnt){
-		if(cnt==20) break;
-		puthz(122,361,"当前为第",16,18,WHITE);
-		puthz(227,361,"回合",16,18,WHITE);
-		nts(cnt,tmp);
-		setfillstyle(SOLID_FILL,BLACK);
-		bar(196,361,226,379);
-		setcolor(WHITE);
-		settextstyle(DEFAULT_FONT, HORIZ_DIR, 2);
-		settextjustify(LEFT_TEXT, TOP_TEXT);
-		outtextxy(196,361,tmp);
-		if(myturn(map_type,my,en,num_my,num_en)) break;
-		if(!enturn(map_type,my,en,num_my)){
-			cnt=20;
-			break;
+	while(1){
+		cnt=0;
+		init(map_type,my,en);
+		print_UI();
+		print_map(map_type);
+		print_en(en);
+		place(map_type,my,en,num_my,num_en);
+		while(++cnt){
+			if(cnt==20) break;
+			puthz(122,361,"当前为第",16,18,WHITE);
+			puthz(227,361,"回合",16,18,WHITE);
+			nts(cnt,tmp);
+			setfillstyle(SOLID_FILL,BLACK);
+			bar(196,361,226,379);
+			setcolor(WHITE);
+			settextstyle(DEFAULT_FONT, HORIZ_DIR, 2);
+			settextjustify(LEFT_TEXT, TOP_TEXT);
+			outtextxy(196,361,tmp);
+			if(myturn(map_type,my,en,num_my,num_en)) break;
+			if(!enturn(map_type,my,en,num_my)){
+				cnt=20;
+				break;
+			}
 		}
+		if(!rank(name,cnt)) break;
 	}
-	rank(name,cnt);
 }

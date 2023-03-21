@@ -2,6 +2,7 @@
 
 /********************
 用于搜索一个单位能走到哪些格子
+采用BFS算法
 lzz写的
 ********************/
 void bfs(struct unit x,int num,int (*map_type)[13+3],int (*f)[13+3],struct unit my[],struct unit en[],int num_my,int num_en){
@@ -88,7 +89,13 @@ void bfs(struct unit x,int num,int (*map_type)[13+3],int (*f)[13+3],struct unit 
 lzz写的
 ********************/
 int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,int num_en){
-	int x,y,half,i,j,k,now_type=0,now_num=0,now_op=2,re=0,f[13+3][13+3],judge,ship_num;
+	int x,y,half;
+	int i,j,k;
+	int now_type=0,now_num=0,now_op=2;
+	int re=0;
+	int f[13+3][13+3];
+	int judge;
+	int ship_num;
 	for(i=1;i<=num_my;i++)
 		for(j=1;j<=my[i].num;j++)
 			my[i].moved[j]=my[i].atked[j]=1;
@@ -372,6 +379,7 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 				continue;
 			}
 		}
+		//在地图上选定要查看的军事单位
 		if(mouse_press(0,0,520,359)==1){
 			half=get_block(MouseX,MouseY,&x,&y);
 			delay(100);
@@ -402,14 +410,18 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 		}
 	}
 	//进行资源结算
-	for(i=1;i<=num_my;i++)
-		for(j=1;j<=my[i].num;j++)
-			my[i].oil[j]-=100;
 	for(i=1;i<=my[5].num;i++){
 		for(j=1;j<=num_my;j++){
 			for(k=1;k<=my[j].num;k++){
+				if(my[j].hp[k]<=0||my[j].oil[k]<=0) continue;
 				if(abs(my[j].a[k]-my[5].a[i])+abs(my[j].b[k]-my[5].b[i])<=my[5].max_attack) my[j].oil[k]+=200;				
 			}
+		}
+	}
+	for(i=1;i<=num_my;i++){
+		for(j=1;j<=my[i].num;j++){
+			if(my[i].oil[j]<=0||my[i].hp[j]<=0) continue;
+			my[i].oil[j]-=100;
 		}
 	}
 	clrmous(MouseX,MouseY);

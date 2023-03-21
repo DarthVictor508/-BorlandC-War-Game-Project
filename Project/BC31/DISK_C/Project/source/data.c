@@ -5,25 +5,37 @@
 lzz写的
 ********************/
 int exist(char *s){
-	int n,i;
+	int n;
+	int i;
 	char name[20];
 	FILE *fp;
 	fp=fopen("source\\data.txt","r");
 	fscanf(fp,"%d",&n);
 	for(i=1;i<=n;i++){
 		fscanf(fp,"%s",name);
-		if(strcmp(name,s)==0) return (fclose(fp),1);
+		if(strcmp(name,s)==0){
+			fclose(fp);
+			return 1;
+		}
 	}
-	return (fclose(fp),0);
+	fclose(fp);
+	return 0;
 }
 
 /********************
 写入新的战斗数据并显示结尾
 lzz写的
 ********************/
-void rank(char *s,int cnt){
-	int n,grd[20],i,j,jud=0,t,fin[20],r;
-	char name[20][20],temp[20];
+int rank(char *s,int cnt){
+	int n;
+	int grd[20];
+	int i,j;
+	int jud=0;
+	int t;
+	int fin[20];
+	int r;
+	char name[20][20];
+	char temp[20];
 	FILE *fp;
 	fp=fopen("source\\data.txt","r");
 	fscanf(fp,"%d",&n);
@@ -36,12 +48,19 @@ void rank(char *s,int cnt){
 		if(jud&&strcmp(name[i],s)==0) grd[i]=(grd[i]>cnt?cnt:grd[i]);
 	}
 	fclose(fp);
-	if(!jud) strcpy(name[++n],s),grd[n]=cnt;
+	if(!jud){
+		strcpy(name[++n],s);
+		grd[n]=cnt;
+	}
 	for(i=1;i<=n-1;i++){
 		for(j=i+1;j<=n;j++){
 			if(grd[i]>grd[j]){
-				t=grd[i],grd[i]=grd[j],grd[j]=t;
-				strcpy(temp,name[i]),strcpy(name[i],name[j]),strcpy(name[j],temp);
+				t=grd[i];
+				grd[i]=grd[j];
+				grd[j]=t;
+				strcpy(temp,name[i]);
+				strcpy(name[i],name[j]);
+				strcpy(name[j],temp);
 			}
 		}
 	}
@@ -115,13 +134,22 @@ void rank(char *s,int cnt){
 	puthz(150,100,"感谢您的游玩！",48,50,BLACK);
 	puthz(140,180,"制作人：华中科技大学人工智能与自动化学院",16,18,BLACK);
 	puthz(257,220,"刘政孜，李鹏程",16,18,BLACK);
-	puthz(248,260,"点击任意位置退出",16,18,BLACK);
+	setfillstyle(SOLID_FILL,BLUE);
+	bar(235,253,405,275);
+	puthz(239,255,"太好玩啦，再来一局",16,18,WHITE);
+	setfillstyle(SOLID_FILL,RED);
+	bar(235,280,405,302);
+	puthz(239,282,"我玩够了，退出游戏",16,18,WHITE);
 	while(1){
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
-		if(mouse_press(0,0,640,480)==1){
+		if(mouse_press(235,253,405,275)==1){
 			delay(100);
-			break;
+			return 1;
+		}
+		if(mouse_press(235,280,405,302)==1){
+			delay(100);
+			return 0;
 		}
 	}
 }
