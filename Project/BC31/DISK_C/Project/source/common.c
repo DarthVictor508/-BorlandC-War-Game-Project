@@ -61,6 +61,9 @@ void print_map(int(*map_type)[13 + 3]) {
 lzzÐ´µÄ
 ********************/
 void print_UI() {
+	setbkcolor(BLACK);
+	setfillstyle(SOLID_FILL,BLACK);
+	bar(0,0,640,480);
 	putbmp(0, 361, "source\\picture\\head.bmp");
 	setfillstyle(SOLID_FILL, RED);
 	bar(0, 360, 120, 362);

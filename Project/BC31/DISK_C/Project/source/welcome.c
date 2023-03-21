@@ -190,7 +190,7 @@ void place(int(*map_type)[13+3], struct unit my[],struct unit en[],int num_my,in
 		for(j=1;j<=my[i].num;j++){
 			setfillstyle(SOLID_FILL,BLACK);
 			bar(123,383,519,480);
-			puthz(128,388,"请您部署我方",16,18,WHITE);
+			puthz(128,388,"请你部署我方",16,18,WHITE);
 			puthz(236,388,my[i].name,16,18,WHITE);
 			bar(524,275,640,315);
 			puthz(528,285,"剩余",16,18,WHITE);
@@ -214,13 +214,13 @@ void place(int(*map_type)[13+3], struct unit my[],struct unit en[],int num_my,in
 					judge=0;
 					setfillstyle(SOLID_FILL,BLACK);
 					bar(123,383,519,480);
-					puthz(128,388,"您不能将陆地作战单位部署在海里",16,18,WHITE);
+					puthz(128,388,"你不能将陆地作战单位部署在海里",16,18,WHITE);
 				}
 				if(my[i].type!=3&&my[i].type==4&&map_type[y][x]==0){
 					judge=0;
 					setfillstyle(SOLID_FILL,BLACK);
 					bar(123,383,519,480);
-					puthz(128,388,"您不能将海上作战单位部署在陆地上",16,18,WHITE);
+					puthz(128,388,"你不能将海上作战单位部署在陆地上",16,18,WHITE);
 				}
 				if(my[i].type!=3){
 					for(k=1;k<=num_my;k++){
@@ -297,7 +297,7 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 
 
 	bar(123, 383, 519, 480); //步骤1
-	puthz(128, 388, "下面由我为您介绍游戏玩法", 16, 18, WHITE);
+	puthz(128, 388, "下面由我为你介绍游戏玩法", 16, 18, WHITE);
 	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
 	while (1) {
 		newmouse(&MouseX, &MouseY, &press);
@@ -313,7 +313,7 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 	delay(100);
 	setfillstyle(SOLID_FILL, BLACK);
 	bar(123, 383, 519, 480);  
-	puthz(128, 388, "首先，您可以布置我方单位的初始位置", 16, 18, WHITE);
+	puthz(128, 388, "首先，你可以布置我方单位的初始位置", 16, 18, WHITE);
 	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
 	while (1) {
 		newmouse(&MouseX, &MouseY, &press);
@@ -404,7 +404,7 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 	setfillstyle(SOLID_FILL, BLACK);//步骤3
 	bar(123, 383, 519, 480);
 	puthz(128, 388, "接下来将进入我方回合，选中单位后点击右下角对", 16, 18, WHITE);
-	puthz(128, 405, "应的按钮，您可以进行移动我方单位、对敌方单位", 16, 18, WHITE);
+	puthz(128, 405, "应的按钮，你可以进行移动我方单位、对敌方单位", 16, 18, WHITE);
 	puthz(128, 422, "发动进攻、结束回合等操作", 16, 18, WHITE);
 	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
 	while (1) {
@@ -430,16 +430,47 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 			break;
 		}
 	}
+	
+	
+	clrmous(MouseX, MouseY);
+	delay(100);
+	setfillstyle(SOLID_FILL, BLACK);
+	bar(123, 383, 519, 480);
+	puthz(128, 388, "我们的时间很紧张，所以如果你没能在二十回合内", 16, 18, WHITE);
+	puthz(128, 405, "拿下敌方的主城，也将被视为任务失败", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			delay(100);
+			break;
+		}
+	}
+	
+	
+	clrmous(MouseX, MouseY);
+	delay(100);
+	setfillstyle(SOLID_FILL, BLACK);
+	bar(123, 383, 519, 480);
+	puthz(128, 388, "现在，开始调度你的兵力吧", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			delay(100);
+			break;
+		}
+	}
 	myturn(map_type, my, en, num_my, num_en);
 	clrmous(MouseX, MouseY);
 	delay(100);
 
-
-
 	                                     
 	setfillstyle(SOLID_FILL, BLACK);//步骤4
 	bar(123, 383, 519, 480);
-	puthz(128, 388, "接下来将进入敌方回合，您将无法进行操作", 16, 18, WHITE);
+	puthz(128, 388, "接下来将进入敌方回合，你将无法进行操作", 16, 18, WHITE);
 	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
 	while (1) {
 		newmouse(&MouseX, &MouseY, &press);
@@ -456,9 +487,9 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 	delay(100);
 
 	setfillstyle(SOLID_FILL, BLACK);
-	bar(123, 383, 519, 480);                                     //步骤5
+	bar(123, 383, 519, 480);                                     
 
-	puthz(128, 388, "经过几个回合后，我们进入到了决胜时刻", 16, 18, WHITE);
+	puthz(128, 388, "经过几个回合后，我们进入到了决胜时刻", 16, 18, WHITE);//步骤5
 	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
 	while (1) {
 		newmouse(&MouseX, &MouseY, &press);
@@ -477,9 +508,9 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 	bar(0, 0, 640, 480);
 	print_UI();
 
-	ending(my, en, num_my, num_en);              //步骤6
+	ending(my, en, num_my, num_en);              
 
-	print_map(map_type);
+	print_map(map_type);//步骤6
 	print_my(my, num_my);
 	print_en(en);
 	setfillstyle(SOLID_FILL, BLACK);

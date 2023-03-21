@@ -2,14 +2,14 @@
 #include<enturn.h>
 
 /*
-æ•Œæ–¹å›åˆå‡½æ•°
-lpcå†™çš„
+µĞ·½»ØºÏº¯Êı
+lpcĞ´µÄ
 */
 int enturn(int (*map_type)[13 + 3],struct unit my[], struct unit en[],int num_my) {
-	int en_atk[15] = {0}; //å‘å‡ºæ”»å‡»çš„æ•Œæ–¹å•ä½ä¿¡æ¯
+	int en_atk[15] = {0}; //·¢³ö¹¥»÷µÄµĞ·½µ¥Î»ĞÅÏ¢
 	struct ab_atk able[15];
 	int i,j,dea_my=0;
-	en_turn(); //æ›´æ–°ä¾§è¾¹æ 
+	en_turn(); //¸üĞÂ²à±ßÀ¸
 	mine_boom(my, en, num_my);
 	en_p_search(my, en, en_atk, able);
 	en_print_atk(my, en, en_atk, able,num_my, map_type);
@@ -22,32 +22,32 @@ int enturn(int (*map_type)[13 + 3],struct unit my[], struct unit en[],int num_my
 			}
 		}
 	}
-	if (dea_my == (my[1].num + my[2].num + my[3].num)) return 0; //è¡¨ç¤ºæ¸¸æˆå¤±è´¥
-	return 1; //æ¸¸æˆç»§ç»­
+	if (dea_my == (my[1].num + my[2].num + my[3].num)) return 0; //±íÊ¾ÓÎÏ·Ê§°Ü
+	return 1; //ÓÎÏ·¼ÌĞø
 }
 
 /*
-æ•Œæ–¹ç‚®å°æœç´¢æ”»å‡»å•ä½å‡½æ•°
-lpcå†™çš„
+µĞ·½ÅÚÌ¨ËÑË÷¹¥»÷µ¥Î»º¯Êı
+lpcĞ´µÄ
 */
 void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk able[]) {
-	int i, j;                  //iä»£è¡¨ç‚®å°å·ä¿¡æ¯ ï¼Œjä»£è¡¨æ”»å‡»å•ä½
-	int t, flag1 = 0;          //s[t]è®°å½•å·²è¢«æœç´¢çš„æ”»å‡»å•ä½  flag1=1 :è¯¥å•ä½å·²è¢«æœç´¢å¹¶å‚¨å­˜çš„å•ä½  flag1=0ï¼šæœªè¢«å‚¨å­˜
-	int s[15] = { 0 };         //è®°å½•å·²è¢«æœç´¢çš„å•ä½ 
-	int n, flag2 = 0;          //flag1=1 :è¯¥æ•Œæ–¹å•ä½å·²æ”»å‡»  flag1=0ï¼šè¯¥æ•Œæ–¹å•ä½æœªæ”»å‡»
-	int m, k;                  //mæŸ¥æ‰¾å·²è¢«æœç´¢çš„å•ä½
-	//å‚¨å­˜æœ¬å›åˆæ”»å‡»çš„å•ä½
+	int i, j;                  //i´ú±íÅÚÌ¨ºÅĞÅÏ¢ £¬j´ú±í¹¥»÷µ¥Î»
+	int t, flag1 = 0;          //s[t]¼ÇÂ¼ÒÑ±»ËÑË÷µÄ¹¥»÷µ¥Î»  flag1=1 :¸Ãµ¥Î»ÒÑ±»ËÑË÷²¢´¢´æµÄµ¥Î»  flag1=0£ºÎ´±»´¢´æ
+	int s[15] = { 0 };         //¼ÇÂ¼ÒÑ±»ËÑË÷µÄµ¥Î» 
+	int n, flag2 = 0;          //flag1=1 :¸ÃµĞ·½µ¥Î»ÒÑ¹¥»÷  flag1=0£º¸ÃµĞ·½µ¥Î»Î´¹¥»÷
+	int m, k;                  //m²éÕÒÒÑ±»ËÑË÷µÄµ¥Î»
+	//´¢´æ±¾»ØºÏ¹¥»÷µÄµ¥Î»
 	t = k = n = 0;        
 
 
-	for (i = 0; i < 15; i++) { //åˆå§‹åŒ– 
+	for (i = 0; i < 15; i++) { //³õÊ¼»¯ 
 		able[i].x = 0;
 		able[i].y = 0;
 	}
 
 
-	for (i = 1; i <= en[2].num; i++) { //å¯¹æ‰€æœ‰ç‚®å°è¿›è¡Œéå†    
-		for (j = 1; j <= 5; j++) { //é¦–å…ˆæœç´¢é£æœºå•ä½
+	for (i = 1; i <= en[2].num; i++) { //¶ÔËùÓĞÅÚÌ¨½øĞĞ±éÀú    
+		for (j = 1; j <= 5; j++) { //Ê×ÏÈËÑË÷·É»úµ¥Î»
 			for (m = 0; m < t; m++) {
 				if (s[m] == j) {
 					flag1 = 1;
@@ -77,7 +77,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 	flag1 = 0;
 
 	if (n <= en[2].num) {
-		for (i = 1; i <= en[2].num; i++) { //å¯¹æ‰€æœ‰ç‚®å°è¿›è¡Œéå†
+		for (i = 1; i <= en[2].num; i++) { //¶ÔËùÓĞÅÚÌ¨½øĞĞ±éÀú
 			for (m = 0; m <= n; m++) {
 				if (en_atk[m] == i) {
 					flag2 = 1;
@@ -88,7 +88,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 5; j++) { //æœç´¢å¦å…‹å•ä½
+				for (j = 1; j <= 5; j++) { //ËÑË÷Ì¹¿Ëµ¥Î»
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -97,7 +97,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 						}
 						else flag1 = 0;
 					}
-					if (abs(my[2].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[2].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[2].hp[j] > 0 && my[2].oil[j] > 0 && en[2].hp[i] > 0) {
+					if (abs(my[2].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[2].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[2].hp[j] > 0 && my[2].oil[j] > 0 && en[2].hp[i] > 0&& (!my[2].ported[j])) {
 
 						able[k].x = my[2].a[j];
 						able[k].y = my[2].b[j];
@@ -122,7 +122,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 	flag1 = 0;
 
 	if (n <= en[2].num) {
-		for (i = 1; i <= en[2].num; i++) { //å¯¹æ‰€æœ‰ç‚®å°è¿›è¡Œéå†
+		for (i = 1; i <= en[2].num; i++) { //¶ÔËùÓĞÅÚÌ¨½øĞĞ±éÀú
 			for (m = 0; m <= n; m++) {
 				if (en_atk[m] == i) {
 					flag2 = 1;
@@ -133,7 +133,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 7; j++) { //æœç´¢å£«å…µå•ä½
+				for (j = 1; j <= 7; j++) { //ËÑË÷Ê¿±øµ¥Î»
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -142,7 +142,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 						}
 						else flag1 = 0;
 					}
-					if (abs(my[1].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[1].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[1].hp[j] > 0&& my[1].oil[j] > 0&& en[2].hp[i] > 0) {
+					if (abs(my[1].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[1].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[1].hp[j] > 0&& my[1].oil[j] > 0&& en[2].hp[i] > 0 && (!my[1].ported[j])) {
 
 						able[k].x = my[1].a[j];
 						able[k].y = my[1].b[j];
@@ -167,7 +167,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 	flag1 = 0;
 
 	if (n <= en[2].num) {
-		for (i = 1; i <= en[2].num; i++) { //å¯¹æ‰€æœ‰ç‚®å°è¿›è¡Œéå†
+		for (i = 1; i <= en[2].num; i++) { //¶ÔËùÓĞÅÚÌ¨½øĞĞ±éÀú
 			for (m = 0; m <= n; m++) {
 				if (en_atk[m] == i) {
 					flag2 = 1;
@@ -178,7 +178,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 5; j++) { //æœç´¢è¿è¾“èˆ¹å•ä½
+				for (j = 1; j <= 5; j++) { //ËÑË÷ÔËÊä´¬µ¥Î»
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -212,7 +212,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 	flag1 = 0;
 
 	if (n <= en[2].num) {
-		for (i = 1; i <= en[2].num; i++) {    //å¯¹æ‰€æœ‰ç‚®å°è¿›è¡Œéå†
+		for (i = 1; i <= en[2].num; i++) {    //¶ÔËùÓĞÅÚÌ¨½øĞĞ±éÀú
 			for (m = 0; m <= n; m++) {
 				if (en_atk[m] == i) {
 					flag2 = 1;
@@ -223,7 +223,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 5; j++) { //æœç´¢æ”¯æ´å…µå•ä½
+				for (j = 1; j <= 5; j++) { //ËÑË÷Ö§Ô®±øµ¥Î»
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -232,7 +232,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 						}
 						else flag1 = 0;
 					}
-					if (abs(my[5].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[5].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[5].hp[j] > 0&&my[5].oil[j] > 0 && en[2].hp[i] > 0) {
+					if (abs(my[5].a[j] - en[2].a[i]) <= en[2].max_attack && abs(my[5].b[j] - en[2].b[i]) <= en[2].max_attack && flag1 == 0 && my[5].hp[j] > 0&&my[5].oil[j] > 0 && en[2].hp[i] > 0&& (!my[5].ported[j])) {
 
 						able[k].x = my[5].a[j];
 						able[k].y = my[5].b[j];
@@ -254,8 +254,8 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 
 
 /*
-æ‰“å°æ•Œæ–¹ç‚®å°æ”»å‡»åŠ¨ç”»å‡½æ•°
-lpcå†™çš„
+´òÓ¡µĞ·½ÅÚÌ¨¹¥»÷¶¯»­º¯Êı
+lpcĞ´µÄ
 */
 void en_print_atk(struct unit my[], struct unit en[], int en_atk[], struct ab_atk able[],int num_my, int(*map_type)[13 + 3]) {
 	int i;
@@ -272,8 +272,8 @@ void en_print_atk(struct unit my[], struct unit en[], int en_atk[], struct ab_at
 
 
 /*
-æ‰£é™¤æˆ‘æ–¹å•ä½è¢«ç‚®å°æ”»å‡»è¡€é‡å‡½æ•°
-lpcå†™çš„
+¿Û³ıÎÒ·½µ¥Î»±»ÅÚÌ¨¹¥»÷ÑªÁ¿º¯Êı
+lpcĞ´µÄ
 */
 void en_p_dis_blood(struct unit my[], struct unit en[], struct ab_atk able[]) {
 	int i,j;
@@ -287,8 +287,8 @@ void en_p_dis_blood(struct unit my[], struct unit en[], struct ab_atk able[]) {
 
 
 /*
-æ•Œæ–¹åœ°é›·æ”»å‡»å‡½æ•°ï¼ˆå«åŠ¨ç”»ï¼‰
-lpcå†™çš„
+µĞ·½µØÀ×¹¥»÷º¯Êı£¨º¬¶¯»­£©
+lpcĞ´µÄ
 */
 
 void mine_boom(struct unit my[], struct unit en[], int num_my) {
@@ -296,32 +296,32 @@ void mine_boom(struct unit my[], struct unit en[], int num_my) {
 	for (i = 1; i <= num_my; i++) {
 		if ((i == 3) || (i == 4)) continue;
 		for (j = 1; j <= my[i].num; j++) {
-			if (my[i].a[j] == en[5].a[1] && my[i].b[j] == en[5].b[1] && en[5].hp[1] > 0) {
-				print_boom(en[5].x[1], en[5].y[1]);           //ä¸€å·é›·çˆ†ç‚¸
+			if (my[i].a[j] == en[5].a[1] && my[i].b[j] == en[5].b[1] && en[5].hp[1] > 0 &&(!my[i].ported[j])) {
+				print_boom(en[5].x[1], en[5].y[1]);           //Ò»ºÅÀ×±¬Õ¨
 				puthz(en[5].x[1], en[5].y[1], en[5].name, 16, 17, RED);
 				delay(500);
 				my[i].hp[j] -= en[5].atk;
 				en[5].hp[1] = 0;
 			}
 
-			if (my[i].a[j] == en[5].a[2] && my[i].b[j] == en[5].b[2] && en[5].hp[2] > 0) {
-				print_boom(en[5].x[2], en[5].y[2]);           //äºŒå·é›·çˆ†ç‚¸
+			if (my[i].a[j] == en[5].a[2] && my[i].b[j] == en[5].b[2] && en[5].hp[2] > 0&&(!my[i].ported[j])) {
+				print_boom(en[5].x[2], en[5].y[2]);           //¶şºÅÀ×±¬Õ¨
 				puthz(en[5].x[2], en[5].y[2], en[5].name, 16, 17, RED);
 				delay(500);
 				my[i].hp[j] -= en[5].atk;
 				en[5].hp[2] = 0;
 			}
 
-			if (my[i].a[j] == en[5].a[3] && my[i].b[j] == en[5].b[3] && en[5].hp[3] > 0) {
-				print_boom(en[5].x[3], en[5].y[3]);           //ä¸‰å·é›·çˆ†ç‚¸
+			if (my[i].a[j] == en[5].a[3] && my[i].b[j] == en[5].b[3] && en[5].hp[3] > 0&&(!my[i].ported[j])) {
+				print_boom(en[5].x[3], en[5].y[3]);           //ÈıºÅÀ×±¬Õ¨
 				puthz(en[5].x[3], en[5].y[3], en[5].name, 16, 17, RED);
 				delay(500);
 				my[i].hp[j] -= en[5].atk;
 				en[5].hp[3] = 0;
 			}
 
-			if (my[i].a[j] == en[5].a[4] && my[i].b[j] == en[5].b[4] && en[5].hp[4] > 0) {
-				print_boom(en[5].x[4], en[5].y[4]);          //å››å·é›·çˆ†ç‚¸
+			if (my[i].a[j] == en[5].a[4] && my[i].b[j] == en[5].b[4] && en[5].hp[4] > 0&&(!my[i].ported[j])) {
+				print_boom(en[5].x[4], en[5].y[4]);          //ËÄºÅÀ×±¬Õ¨
 				puthz(en[5].x[4], en[5].y[4], en[5].name, 16, 17, RED);
 				delay(500);
 				my[i].hp[j] -= en[5].atk;

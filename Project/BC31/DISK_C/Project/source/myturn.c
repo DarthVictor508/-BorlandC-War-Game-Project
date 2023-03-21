@@ -410,14 +410,18 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 		}
 	}
 	//进行资源结算
-	for(i=1;i<=num_my;i++)
-		for(j=1;j<=my[i].num;j++)
-			my[i].oil[j]-=100;
 	for(i=1;i<=my[5].num;i++){
 		for(j=1;j<=num_my;j++){
 			for(k=1;k<=my[j].num;k++){
+				if(my[j].hp[k]<=0||my[j].oil[k]<=0) continue;
 				if(abs(my[j].a[k]-my[5].a[i])+abs(my[j].b[k]-my[5].b[i])<=my[5].max_attack) my[j].oil[k]+=200;				
 			}
+		}
+	}
+	for(i=1;i<=num_my;i++){
+		for(j=1;j<=my[i].num;j++){
+			if(my[i].oil[j]<=0||my[i].hp[j]<=0) continue;
+			my[i].oil[j]-=100;
 		}
 	}
 	clrmous(MouseX,MouseY);
