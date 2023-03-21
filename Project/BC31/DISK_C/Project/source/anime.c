@@ -11,7 +11,7 @@ void print_atk(int x, int y, int xx, int yy) {
 	int nx, ny;
 	int lx, ly;
 	int i;
-	int hz = 10;
+	int hz = 5;
 	/*size=imagesize(x-10,y-10,x+10,y+10);
 	buff=malloc(size);
 	getimage(x-10,y-10,x+10,y+10,buff);*/

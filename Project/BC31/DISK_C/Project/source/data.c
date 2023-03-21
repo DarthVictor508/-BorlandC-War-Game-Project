@@ -5,16 +5,21 @@
 lzzÐ´µÄ
 ********************/
 int exist(char *s){
-	int n,i;
+	int n;
+	int i;
 	char name[20];
 	FILE *fp;
 	fp=fopen("source\\data.txt","r");
 	fscanf(fp,"%d",&n);
 	for(i=1;i<=n;i++){
 		fscanf(fp,"%s",name);
-		if(strcmp(name,s)==0) return (fclose(fp),1);
+		if(strcmp(name,s)==0){
+			fclose(fp);
+			return 1;
+		}
 	}
-	return (fclose(fp),0);
+	fclose(fp);
+	return 0;
 }
 
 /********************
