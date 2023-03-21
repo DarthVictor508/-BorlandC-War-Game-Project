@@ -233,7 +233,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//我方飞机所有信息
 	my[3].name = "飞机";
 	my[3].type = 3;
-	my[3].num = 4;
+	my[3].num = 3;
 	for (i = 1; i <= my[3].num; i++) {
 		my[3].hp[i] = 250;
 		my[3].oil[i] = 500;
@@ -250,7 +250,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	//我方运输船所有信息
 	my[4].name = "运输船";
 	my[4].type = 4;
-	my[4].num = 2;
+	my[4].num = 3;
 	for (i = 1; i <= my[4].num; i++) {
 		my[4].hp[i] = 400;
 		my[4].oil[i] = 300;
@@ -346,7 +346,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	en[3].a[2] = 7; en[3].b[2] = 5;	en[3].a[3] = 11; en[3].b[3] = 5;
 	en[3].a[4] = 10; en[3].b[4] = 7;
 
-	//敌方叛军信息
+	/*/敌方叛军信息
 	en[4].name = "叛军";
 	en[4].type = 4;
 	en[4].num = 6;
@@ -368,7 +368,7 @@ void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]) {
 	en[4].a[1] = 9; en[4].b[1] = 2;   en[4].a[2] = 10;  en[4].b[2] = 2;
 	en[4].a[3] = 7; en[4].b[3] = 3;
 	en[4].a[4] = 7; en[4].b[4] = 7;
-	en[4].a[5] = 9; en[4].b[5] = 8;  en[4].a[6] = 10; en[4].b[6] = 8;
+	en[4].a[5] = 9; en[4].b[5] = 8;  en[4].a[6] = 10; en[4].b[6] = 8;*/
 
 	//地雷信息
 	en[5].name = "地雷";
