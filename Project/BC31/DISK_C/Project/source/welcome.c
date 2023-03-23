@@ -292,9 +292,9 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 	setbkcolor(BLACK);
 	setfillstyle(SOLID_FILL, BLACK);
 	bar(0, 0, 640, 480);
+	print_UI();
 	print_map(map_type);
 	print_en(en);
-	print_UI();
 	setfillstyle(SOLID_FILL, BLACK);
 
 
