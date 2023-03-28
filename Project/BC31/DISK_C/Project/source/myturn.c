@@ -96,6 +96,7 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 	int f[13+3][13+3];
 	int judge;
 	int ship_num;
+	int now_loc=0;
 	for(i=1;i<=num_my;i++)
 		for(j=1;j<=my[i].num;j++)
 			my[i].moved[j]=my[i].atked[j]=1;
@@ -109,6 +110,61 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 	print_my(my,num_my);
 	print_en(en);
 	while(1){
+		if(mouse_in(528,448,636,474)&&now_loc!=3){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=3;
+			setfillstyle(SOLID_FILL,LIGHTGREEN);
+			bar(528,448,636,474);
+			puthz(542,454,"结束回合",16,20,WHITE);
+		}
+		if(now_op==0&&my[now_type].moved[now_num]>0&&mouse_in(528,418,636,444)&&now_loc!=2){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=2;
+			setfillstyle(SOLID_FILL,LIGHTBLUE);
+			bar(528,418,636,444);
+			puthz(562,423,"移动",16,20,WHITE);
+		}
+		if(now_op==0&&now_type!=4&&now_type!=5&&my[now_type].atked[now_num]>0&&mouse_in(528,388,636,414)&&now_loc!=1){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=1;
+			setfillstyle(SOLID_FILL,LIGHTRED);
+			bar(528,388,636,414);
+			puthz(562,393,"攻击",16,20,WHITE);
+		}
+		if(now_op==0&&now_type==4&&my[now_type].port_type[now_num]!=0&&my[my[4].port_type[now_num]].moved[my[4].port_num[now_num]]&&mouse_in(528,388,636,414)&&now_loc!=1){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=1;
+			setfillstyle(SOLID_FILL,LIGHTRED);
+			bar(528,388,636,414);
+			puthz(532,393,"调度船上单位",16,17,WHITE);
+		}
+		if((!mouse_in(528,448,636,474))&&(!mouse_in(528,418,636,444))&&(!mouse_in(528,388,636,414))&&now_loc!=0){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=0;
+			setfillstyle(SOLID_FILL,GREEN);
+			bar(528,448,636,474);
+			puthz(542,454,"结束回合",16,20,WHITE);
+			if(now_op==0&&my[now_type].moved[now_num]>0){
+				setfillstyle(SOLID_FILL,BLUE);
+				bar(528,418,636,444);
+				puthz(562,423,"移动",16,20,WHITE);
+			}
+			if(now_op==0&&now_type!=4&&now_type!=5&&my[now_type].atked[now_num]>0){
+				setfillstyle(SOLID_FILL,RED);
+				bar(528,388,636,414);
+				puthz(562,393,"攻击",16,20,WHITE);
+			}
+			if(now_op==0&&now_type==4&&my[now_type].port_type[now_num]!=0&&my[my[4].port_type[now_num]].moved[my[4].port_num[now_num]]){
+				setfillstyle(SOLID_FILL,RED);
+				bar(528,388,636,414);
+				puthz(532,393,"调度船上单位",16,17,WHITE);
+			}
+		}
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
 		//刷新右侧信息栏
@@ -125,6 +181,7 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 		if(now_op==0){
 			//点击了移动
 			if(mouse_press(528,418,636,444)==1&&my[now_type].moved[now_num]>0){
+				MouseS=0;
 				delay(100);
 				bfs(my[now_type],now_num,map_type,f,my,en,num_my,num_en); //搜索可移动到哪里
 				for(i=1;i<=9;i++){//输出带有可行位置的地图
@@ -146,7 +203,24 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 				setfillstyle(SOLID_FILL,GREEN);
 				bar(528,448,636,474);
 				puthz(542,454,"取消移动",16,20,WHITE);
+				now_loc=0;
 				while(1){
+					if(mouse_in(528,448,636,474)&&now_loc!=1){
+						clrmous(MouseX,MouseY);
+						delay(50);
+						now_loc=1;
+						setfillstyle(SOLID_FILL,LIGHTGREEN);
+						bar(528,448,636,474);
+						puthz(542,454,"取消移动",16,20,WHITE);
+					}
+					if((!mouse_in(528,448,636,474))&&now_loc!=0){
+						clrmous(MouseX,MouseY);
+						delay(50);
+						now_loc=0;
+						setfillstyle(SOLID_FILL,GREEN);
+						bar(528,448,636,474);
+						puthz(542,454,"取消移动",16,20,WHITE);
+					}
 					newmouse(&MouseX,&MouseY,&press);
 					mouse(MouseX,MouseY);
 					if(mouse_press(528,448,636,474)==1){//点击了取消移动
@@ -236,7 +310,24 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 				setfillstyle(SOLID_FILL,GREEN);
 				bar(528,448,636,474);
 				puthz(542,454,"取消攻击",16,20,WHITE);
+				now_loc=0;
 				while(1){
+					if(mouse_in(528,448,636,474)&&now_loc!=1){
+						clrmous(MouseX,MouseY);
+						delay(50);
+						now_loc=1;
+						setfillstyle(SOLID_FILL,LIGHTGREEN);
+						bar(528,448,636,474);
+						puthz(542,454,"取消攻击",16,20,WHITE);
+					}
+					if((!mouse_in(528,448,636,474))&&now_loc!=0){
+						clrmous(MouseX,MouseY);
+						delay(50);
+						now_loc=0;
+						setfillstyle(SOLID_FILL,GREEN);
+						bar(528,448,636,474);
+						puthz(542,454,"取消攻击",16,20,WHITE);
+					}
 					newmouse(&MouseX,&MouseY,&press);
 					mouse(MouseX,MouseY);
 					if(mouse_press(528,448,636,474)==1){//点击了取消攻击
@@ -278,6 +369,7 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 						print_en(en);
 						print_my(my,num_my);
 						my_turn();
+						now_op=2;
 						my[now_type].atked[now_num]--;
 						break;
 					}
@@ -313,7 +405,24 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 				setfillstyle(SOLID_FILL,GREEN);
 				bar(528,448,636,474);
 				puthz(542,454,"取消移动",16,20,WHITE);
+				now_loc=0;
 				while(1){
+					if(mouse_in(528,448,636,474)&&now_loc!=1){
+						clrmous(MouseX,MouseY);
+						delay(50);
+						now_loc=1;
+						setfillstyle(SOLID_FILL,LIGHTGREEN);
+						bar(528,448,636,474);
+						puthz(542,454,"取消移动",16,20,WHITE);
+					}
+					if((!mouse_in(528,448,636,474))&&now_loc!=0){
+						clrmous(MouseX,MouseY);
+						delay(50);
+						now_loc=0;
+						setfillstyle(SOLID_FILL,GREEN);
+						bar(528,448,636,474);
+						puthz(542,454,"取消移动",16,20,WHITE);
+					}
 					newmouse(&MouseX,&MouseY,&press);
 					mouse(MouseX,MouseY);
 					if(mouse_press(528,448,636,474)==1){//点击了取消移动

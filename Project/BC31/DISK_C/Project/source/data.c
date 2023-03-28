@@ -37,6 +37,7 @@ int rank(char *s,int cnt){
 	char name[20][20];
 	char temp[20];
 	FILE *fp;
+	int now_loc=0;
 	fp=fopen("source\\data.txt","r");
 	fscanf(fp,"%d",&n);
 	for(i=1;i<=n;i++){
@@ -140,7 +141,37 @@ int rank(char *s,int cnt){
 	setfillstyle(SOLID_FILL,RED);
 	bar(235,280,405,302);
 	puthz(239,282,"我玩够了，退出游戏",16,18,WHITE);
+	if(mouse_in(235,253,405,275)) now_loc=1;
+	else if(mouse_in(235,280,405,302)) now_loc=2;
+	else now_loc=0;
 	while(1){
+		if(mouse_in(235,253,405,275)&&now_loc!=1){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=1;
+			setfillstyle(SOLID_FILL,LIGHTBLUE);
+			bar(235,253,405,275);
+			puthz(239,255,"太好玩啦，再来一局",16,18,WHITE);
+		}
+		if(mouse_in(235,280,405,302)&&now_loc!=2){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=2;
+			setfillstyle(SOLID_FILL,LIGHTRED);
+			bar(235,280,405,302);
+			puthz(239,282,"我玩够了，退出游戏",16,18,WHITE);
+		}
+		if((!mouse_in(235,253,405,275))&&(!mouse_in(235,280,405,302))&&now_loc!=0){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=0;
+			setfillstyle(SOLID_FILL,BLUE);
+			bar(235,253,405,275);
+			puthz(239,255,"太好玩啦，再来一局",16,18,WHITE);
+			setfillstyle(SOLID_FILL,RED);
+			bar(235,280,405,302);
+			puthz(239,282,"我玩够了，退出游戏",16,18,WHITE);
+		}
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
 		if(mouse_press(235,253,405,275)==1){

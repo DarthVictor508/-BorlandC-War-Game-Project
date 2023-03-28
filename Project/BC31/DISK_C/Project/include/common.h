@@ -30,6 +30,7 @@ struct unit{
 };
 
 int get_dis(struct unit a,struct unit b);
+int mouse_in(int x,int y,int xx,int yy);
 void print_map(int (*map_type)[13+3]);
 void print_UI();
 void init(int(*map_type)[13 + 3], struct unit my[], struct unit en[]);

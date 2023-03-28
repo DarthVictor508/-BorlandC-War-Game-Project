@@ -9,6 +9,14 @@ int get_dis(struct unit a, struct unit b) {
 }
 
 /********************
+用于判断鼠标是否在某个区域内
+lzz写的
+********************/
+int mouse_in(int x,int y,int xx,int yy){
+	return MouseX>=x&&MouseX<=xx&&MouseY>=y&&MouseY<=yy;
+}
+
+/********************
 用于将数字转换为字符串
 lzz写的
 ********************/
