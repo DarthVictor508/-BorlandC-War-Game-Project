@@ -7,6 +7,7 @@ lzz写的
 int welcome(char *s){
 	int cnt=0,now=235;
 	char temp[5];
+	int now_loc=0;
 	
 	cleardevice();
 	setbkcolor(WHITE);
@@ -20,6 +21,22 @@ int welcome(char *s){
 	clrmous(MouseX,MouseY);
 	delay(100);
 	while(1){
+		if(mouse_in(240,375,240+40*4,375+40)&&now_loc==0){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=1;
+			setfillstyle(SOLID_FILL,LIGHTBLUE);
+			bar(240,375,240+40*4,375+40);
+			puthz(240+5,375+5,"开始游戏",32,40,BLACK);
+		}
+		if((!mouse_in(240,375,240+40*4,375+40))&&now_loc==1){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=0;
+			setfillstyle(SOLID_FILL,BLUE);
+			bar(240,375,240+40*4,375+40);
+			puthz(240+5,375+5,"开始游戏",32,40,BLACK);
+		}
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
 		if(mouse_press(240,375,240+40*4,375+40)==1){
@@ -90,6 +107,9 @@ int welcome(char *s){
 		}
 	}
 	
+	if(mouse_in(230,380,620,405)) now_loc=1;
+	else now_loc=0;
+	if(now_loc) MouseS=2;
 	clrmous(MouseX,MouseY);
 	delay(100);
 	bar(0,360,640,480);
@@ -97,9 +117,22 @@ int welcome(char *s){
 	setfillstyle(SOLID_FILL,LIGHTGRAY);
 	bar(230,380,620,405);
 	while(1){
+		if(mouse_in(230,380,620,405)&&now_loc==0){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=1;
+			MouseS=2;
+		}
+		if((!mouse_in(230,380,620,405))&&now_loc==1){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=0;
+			MouseS=0;
+		}
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
 		if(mouse_press(230,380,620,465)==1){
+			MouseS=0;
 			delay(100);
 			break;
 		}
@@ -154,6 +187,9 @@ int welcome(char *s){
 		}
 	}
 	
+	if(mouse_in(20,440,185,465)) now_loc=1;
+	else if(mouse_in(195,440,360,465)) now_loc=2;
+	else now_loc=0;
 	clrmous(MouseX,MouseY);
 	delay(100);
 	bar(0,405,640,480);
@@ -165,6 +201,33 @@ int welcome(char *s){
 	bar(195,440,360,465);
 	puthz(195+5,440+5,"不需要了，谢谢你",16,20,WHITE);
 	while(1){
+		if(mouse_in(20,440,185,465)&&now_loc!=1){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=1;
+			setfillstyle(SOLID_FILL,LIGHTBLUE);
+			bar(20,440,185,465);
+			puthz(20+5,440+5,"是的，我需要教程",16,20,WHITE);
+		}
+		if(mouse_in(195,440,360,465)&&now_loc!=2){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=2;
+			setfillstyle(SOLID_FILL,LIGHTRED);
+			bar(195,440,360,465);
+			puthz(195+5,440+5,"不需要了，谢谢你",16,20,WHITE);
+		}
+		if((!mouse_in(20,440,185,465))&&(!mouse_in(195,440,360,465))&&now_loc!=0){
+			clrmous(MouseX,MouseY);
+			delay(50);
+			now_loc=0;
+			setfillstyle(SOLID_FILL,BLUE);
+			bar(20,440,185,465);
+			puthz(20+5,440+5,"是的，我需要教程",16,20,WHITE);
+			setfillstyle(SOLID_FILL,RED);
+			bar(195,440,360,465);
+			puthz(195+5,440+5,"不需要了，谢谢你",16,20,WHITE);
+		}
 		newmouse(&MouseX,&MouseY,&press);
 		mouse(MouseX,MouseY);
 		if(mouse_press(20,440,185,465)==1){
@@ -292,9 +355,9 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 	setbkcolor(BLACK);
 	setfillstyle(SOLID_FILL, BLACK);
 	bar(0, 0, 640, 480);
+	print_UI();
 	print_map(map_type);
 	print_en(en);
-	print_UI();
 	setfillstyle(SOLID_FILL, BLACK);
 
 
@@ -548,4 +611,99 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 	}
 	clrmous(MouseX, MouseY);
 	delay(100);
+}
+
+/********************
+用于选择关卡难度
+lpc写的
+********************/
+int choose() {
+
+	int now_loc = 0;
+
+	cleardevice();
+	clrmous(MouseX, MouseY);
+	setbkcolor(WHITE);
+	setfillstyle(SOLID_FILL, WHITE);
+	bar(0, 0, 640, 480);
+
+	clrmous(MouseX, MouseY);
+
+	puthz(200+10, 40, "选择难度", 48, 60, BLUE);
+
+	setfillstyle(SOLID_FILL, GREEN);
+	bar(280,125 ,370 ,165 );
+	puthz(280+5, 125+3, "简单", 32, 45, RED);
+
+	setfillstyle(SOLID_FILL, GREEN);
+	bar(280, 195, 370, 235);
+	puthz(280 + 5, 195 + 3, "普通", 32, 45, RED);
+
+	setfillstyle(SOLID_FILL, GREEN);
+	bar(280, 265, 370, 305);
+	puthz(280 + 5, 265 + 3, "困难", 32, 45, RED);
+
+	mouseinit();
+	while (1) {
+		if (mouse_in(280, 125, 370, 165) && now_loc != 1) {
+			clrmous(MouseX, MouseY);
+			delay(50);
+			now_loc = 1;
+			setfillstyle(SOLID_FILL, LIGHTGREEN);
+			bar(280, 125, 370, 165);
+			puthz(280 + 5, 125 + 3, "简单", 32, 45, RED);
+		}
+		if (mouse_in(280, 195, 370, 235) && now_loc != 2) {
+			clrmous(MouseX, MouseY);
+			delay(50);
+			now_loc = 2;
+			setfillstyle(SOLID_FILL, LIGHTGREEN);
+			bar(280, 195, 370, 235);
+			puthz(280 + 5, 195 + 3, "普通", 32, 45, RED);
+		}
+
+		if (mouse_in(280, 265, 370, 305) && now_loc != 3) {
+			clrmous(MouseX, MouseY);
+			delay(50);
+			now_loc = 3;
+			setfillstyle(SOLID_FILL, LIGHTGREEN);
+			bar(280, 265, 370, 305);
+			puthz(280 + 5, 265 + 3, "困难", 32, 45, RED);
+		}
+
+		if ((!mouse_in(280, 125, 370, 165)) && (!mouse_in(280, 195, 370, 235)) && (!mouse_in(280, 265, 370, 305)) && now_loc != 0) {
+			clrmous(MouseX, MouseY);
+			delay(50);
+			now_loc = 0;
+
+			setfillstyle(SOLID_FILL, GREEN);
+			bar(280, 125, 370, 165);
+			puthz(280 + 5, 125 + 3, "简单", 32, 45, RED);
+
+			setfillstyle(SOLID_FILL, GREEN);
+			bar(280, 195, 370, 235);
+			puthz(280 + 5, 195 + 3, "普通", 32, 45, RED);
+
+			setfillstyle(SOLID_FILL, GREEN);
+			bar(280, 265, 370, 305);
+			puthz(280 + 5, 265 + 3, "困难", 32, 45, RED);
+		}
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(280, 125, 370, 165) == 1) {
+			delay(100);
+			cleardevice();
+			return 1;
+		}
+		if (mouse_press(280, 195, 370, 235) == 1) {
+			delay(100);
+			cleardevice();
+			return 2;
+		}
+		if (mouse_press(280, 265, 370, 305) == 1) {
+			delay(100);
+			cleardevice();
+			return 3;
+		}
+	}
 }

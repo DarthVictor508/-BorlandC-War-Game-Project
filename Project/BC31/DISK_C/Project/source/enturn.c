@@ -6,8 +6,8 @@
 lpc写的
 */
 int enturn(int (*map_type)[13 + 3],struct unit my[], struct unit en[],int num_my) {
-	int en_atk[15] = {0}; //发出攻击的敌方单位信息
-	struct ab_atk able[15];
+	int en_atk[20] = {0}; //发出攻击的敌方单位信息
+	struct ab_atk able[20];
 	int i,j,dea_my=0;
 	en_turn(); //更新侧边栏
 	mine_boom(my, en, num_my);
@@ -33,21 +33,21 @@ lpc写的
 void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk able[]) {
 	int i, j;                  //i代表炮台号信息 ，j代表攻击单位
 	int t, flag1 = 0;          //s[t]记录已被搜索的攻击单位  flag1=1 :该单位已被搜索并储存的单位  flag1=0：未被储存
-	int s[15] = { 0 };         //记录已被搜索的单位 
+	int s[20] = { 0 };         //记录已被搜索的单位 
 	int n, flag2 = 0;          //flag1=1 :该敌方单位已攻击  flag1=0：该敌方单位未攻击
 	int m, k;                  //m查找已被搜索的单位
 	//储存本回合攻击的单位
 	t = k = n = 0;        
 
 
-	for (i = 0; i < 15; i++) { //初始化 
+	for (i = 0; i < 20; i++) { //初始化 
 		able[i].x = 0;
 		able[i].y = 0;
 	}
 
 
 	for (i = 1; i <= en[2].num; i++) { //对所有炮台进行遍历    
-		for (j = 1; j <= 5; j++) { //首先搜索飞机单位
+		for (j = 1; j <= my[3].num; j++) { //首先搜索飞机单位
 			for (m = 0; m < t; m++) {
 				if (s[m] == j) {
 					flag1 = 1;
@@ -70,7 +70,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 		}
 	}
 
-	for (i = 0; i < 15; i++) {
+	for (i = 0; i < 20; i++) {
 		s[i] = 0;
 	}
 	t = 0;
@@ -88,7 +88,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 5; j++) { //搜索坦克单位
+				for (j = 1; j <= my[2].num; j++) { //搜索坦克单位
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -115,7 +115,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 		}
 	}
 
-	for (i = 0; i < 15; i++) {
+	for (i = 0; i < 20; i++) {
 		s[i] = 0;
 	}
 	t = 0;
@@ -133,7 +133,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 7; j++) { //搜索士兵单位
+				for (j = 1; j <= my[1].num; j++) { //搜索士兵单位
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -160,7 +160,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 		}
 	}
 
-	for (i = 0; i < 15; i++) {
+	for (i = 0; i < 20; i++) {
 		s[i] = 0;
 	}
 	t = 0;
@@ -178,7 +178,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 5; j++) { //搜索运输船单位
+				for (j = 1; j <= my[4].num; j++) { //搜索运输船单位
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -205,7 +205,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 		}
 	}
 
-	for (i = 0; i < 15; i++) {
+	for (i = 0; i < 20; i++) {
 		s[i] = 0;
 	}
 	t = 0;
@@ -223,7 +223,7 @@ void en_p_search(struct unit my[], struct unit en[],int en_atk[], struct ab_atk 
 			if (flag2 == 1) continue;
 			else {
 
-				for (j = 1; j <= 5; j++) { //搜索支援兵单位
+				for (j = 1; j <= my[5].num; j++) { //搜索支援兵单位
 
 					for (m = 0; m <= t; m++) {
 						if (s[m] == j) {
@@ -326,6 +326,41 @@ void mine_boom(struct unit my[], struct unit en[], int num_my) {
 				delay(500);
 				my[i].hp[j] -= en[5].atk;
 				en[5].hp[4] = 0;
+			}
+
+			if (en[5].num == 8) {
+
+				if (my[i].a[j] == en[5].a[5] && my[i].b[j] == en[5].b[5] && en[5].hp[5] > 0 && (!my[i].ported[j])) {
+					print_boom(en[5].x[5], en[5].y[5]);          //五号雷爆炸
+					puthz(en[5].x[5], en[5].y[5], en[5].name, 16, 17, RED);
+					delay(500);
+					my[i].hp[j] -= en[5].atk;
+					en[5].hp[5] = 0;
+				}
+
+				if (my[i].a[j] == en[5].a[6] && my[i].b[j] == en[5].b[6] && en[5].hp[6] > 0 && (!my[i].ported[j])) {
+					print_boom(en[5].x[6], en[5].y[6]);          //六号雷爆炸
+					puthz(en[5].x[6], en[5].y[6], en[5].name, 16, 17, RED);
+					delay(500);
+					my[i].hp[j] -= en[5].atk;
+					en[5].hp[6] = 0;
+				}
+
+				if (my[i].a[j] == en[5].a[7] && my[i].b[j] == en[5].b[7] && en[5].hp[7] > 0 && (!my[i].ported[j])) {
+					print_boom(en[5].x[7], en[5].y[7]);          //七号雷爆炸
+					puthz(en[5].x[7], en[5].y[7], en[5].name, 16, 17, RED);
+					delay(500);
+					my[i].hp[j] -= en[5].atk;
+					en[5].hp[7] = 0;
+				}
+
+				if (my[i].a[j] == en[5].a[8] && my[i].b[j] == en[5].b[8] && en[5].hp[8] > 0 && (!my[i].ported[j])) {
+					print_boom(en[5].x[8], en[5].y[8]);          //八号雷爆炸
+					puthz(en[5].x[8], en[5].y[8], en[5].name, 16, 17, RED);
+					delay(500);
+					my[i].hp[j] -= en[5].atk;
+					en[5].hp[8] = 0;
+				}
 			}
 		}
 	}

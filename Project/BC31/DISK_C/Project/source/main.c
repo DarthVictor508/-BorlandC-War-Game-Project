@@ -21,11 +21,11 @@ void main(){
 	initgraph(&gdriver,&gmode,"source\\BGI");
 	mouseinit();
 
-	init(map_type,my,en);
-	if(welcome(name)) teach(map_type,my,en,num_my,num_en);
+	init(map_type, my, en, 1);
+	if(welcome(name)) teach(map_type, my, en, num_my, num_en);
 	while(1){
 		cnt=0;
-		init(map_type,my,en);
+		init(map_type,my,en,choose());
 		print_UI();
 		print_map(map_type);
 		print_en(en);
