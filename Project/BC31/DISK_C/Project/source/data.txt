@@ -1,15 +1,9 @@
-3
-<<<<<<< HEAD
+4
 lzz
-DarthVictor
-lpc
-1
+fdfhfj
+<<<<<<<
+HEAD
 2
-=======
-AbaAba
-lzz
-DarthVictor
-2
-2
->>>>>>> 8630ecae6385dc89a55c8dc01853c56e8163b805
-3
+20
+975
+2925
