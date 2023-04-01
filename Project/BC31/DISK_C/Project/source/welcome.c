@@ -546,6 +546,21 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 			break;
 		}
 	}
+	
+	
+	setfillstyle(SOLID_FILL, BLACK);//步骤4
+	bar(123, 383, 519, 480);
+	puthz(128, 388, "如果是在双人对战模式下，那么接下来换另一位", 16, 18, WHITE);
+	puthz(128, 405, "玩家操作守岛方", 16, 18, WHITE);
+	puthz(374, 440, "点击任意处继续", 16, 18, WHITE);
+	while (1) {
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(0, 0, 640, 480) == 1) {
+			delay(100);
+			break;
+		}
+	}
 	clrmous(MouseX, MouseY);
 	delay(100);
 	enturn(map_type, my, en, num_my);
@@ -611,4 +626,165 @@ void teach(int(*map_type)[13 + 3], struct unit my[], struct unit en[], int num_m
 	}
 	clrmous(MouseX, MouseY);
 	delay(100);
+}
+
+/********************
+用于选择关卡难度
+lpc写的
+********************/
+int choose() {
+
+	int now_loc = 0;
+
+	cleardevice();
+	clrmous(MouseX, MouseY);
+	delay(100);
+	setbkcolor(WHITE);
+	setfillstyle(SOLID_FILL, WHITE);
+	bar(0, 0, 640, 480);
+
+	clrmous(MouseX, MouseY);
+
+	puthz(200+10, 40, "选择难度", 48, 60, BLUE);
+
+	setfillstyle(SOLID_FILL, GREEN);
+	bar(280,125 ,370 ,165 );
+	puthz(280+5, 125+3, "简单", 32, 45, RED);
+
+	setfillstyle(SOLID_FILL, GREEN);
+	bar(280, 195, 370, 235);
+	puthz(280 + 5, 195 + 3, "普通", 32, 45, RED);
+
+	setfillstyle(SOLID_FILL, GREEN);
+	bar(280, 265, 370, 305);
+	puthz(280 + 5, 265 + 3, "困难", 32, 45, RED);
+
+	mouseinit();
+	while (1) {
+		if (mouse_in(280, 125, 370, 165) && now_loc != 1) {
+			clrmous(MouseX, MouseY);
+			delay(50);
+			now_loc = 1;
+			setfillstyle(SOLID_FILL, LIGHTGREEN);
+			bar(280, 125, 370, 165);
+			puthz(280 + 5, 125 + 3, "简单", 32, 45, RED);
+		}
+		if (mouse_in(280, 195, 370, 235) && now_loc != 2) {
+			clrmous(MouseX, MouseY);
+			delay(50);
+			now_loc = 2;
+			setfillstyle(SOLID_FILL, LIGHTGREEN);
+			bar(280, 195, 370, 235);
+			puthz(280 + 5, 195 + 3, "普通", 32, 45, RED);
+		}
+
+		if (mouse_in(280, 265, 370, 305) && now_loc != 3) {
+			clrmous(MouseX, MouseY);
+			delay(50);
+			now_loc = 3;
+			setfillstyle(SOLID_FILL, LIGHTGREEN);
+			bar(280, 265, 370, 305);
+			puthz(280 + 5, 265 + 3, "困难", 32, 45, RED);
+		}
+
+		if ((!mouse_in(280, 125, 370, 165)) && (!mouse_in(280, 195, 370, 235)) && (!mouse_in(280, 265, 370, 305)) && now_loc != 0) {
+			clrmous(MouseX, MouseY);
+			delay(50);
+			now_loc = 0;
+
+			setfillstyle(SOLID_FILL, GREEN);
+			bar(280, 125, 370, 165);
+			puthz(280 + 5, 125 + 3, "简单", 32, 45, RED);
+
+			setfillstyle(SOLID_FILL, GREEN);
+			bar(280, 195, 370, 235);
+			puthz(280 + 5, 195 + 3, "普通", 32, 45, RED);
+
+			setfillstyle(SOLID_FILL, GREEN);
+			bar(280, 265, 370, 305);
+			puthz(280 + 5, 265 + 3, "困难", 32, 45, RED);
+		}
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(280, 125, 370, 165) == 1) {
+			delay(100);
+			cleardevice();
+			return 1;
+		}
+		if (mouse_press(280, 195, 370, 235) == 1) {
+			delay(100);
+			cleardevice();
+			return 2;
+		}
+		if (mouse_press(280, 265, 370, 305) == 1) {
+			delay(100);
+			cleardevice();
+			return 3;
+		}
+	}
+}
+
+/********************
+用于选择游戏模式
+lzz写的
+********************/
+int mode(){
+	int now_loc = 0;
+	clrmous(MouseX, MouseY);
+	delay(100);
+	cleardevice();
+	setbkcolor(WHITE);
+	setfillstyle(SOLID_FILL, WHITE);
+	puthz(200+10, 40, "选择模式", 48, 60, BLUE);
+
+	setfillstyle(SOLID_FILL, GREEN);
+	bar(238,125 ,417 ,165 );
+	puthz(238+5, 125+3, "人机对战", 32, 45, RED);
+
+	setfillstyle(SOLID_FILL, GREEN);
+	bar(238, 195, 417, 235);
+	puthz(238 + 5, 195 + 3, "双人对战", 32, 45, RED);
+	
+	mouseinit();
+	while (1) {
+		if (mouse_in(238,125 ,417 ,165) && now_loc != 1) {
+			clrmous(MouseX, MouseY);
+			delay(50);
+			now_loc = 1;
+			setfillstyle(SOLID_FILL, LIGHTGREEN);
+			bar(238,125 ,417 ,165);
+			puthz(238 + 5, 125 + 3, "人机对战", 32, 45, RED);
+		}
+		if (mouse_in(238, 195, 417, 235) && now_loc != 2) {
+			clrmous(MouseX, MouseY);
+			delay(50);
+			now_loc = 2;
+			setfillstyle(SOLID_FILL, LIGHTGREEN);
+			bar(238, 195, 417, 235);
+			puthz(238 + 5, 195 + 3, "双人对战", 32, 45, RED);
+		}
+		if ((!mouse_in(238,125 ,417 ,165)) && (!mouse_in(238, 195, 417, 235)) && now_loc != 0) {
+			clrmous(MouseX, MouseY);
+			delay(50);
+			now_loc = 0;
+			setfillstyle(SOLID_FILL, GREEN);
+			bar(238,125 ,417 ,165);
+			puthz(238 + 5, 125 + 3, "人机对战", 32, 45, RED);
+			setfillstyle(SOLID_FILL, GREEN);
+			bar(238, 195, 417, 235);
+			puthz(238 + 5, 195 + 3, "双人对战", 32, 45, RED);
+		}
+		newmouse(&MouseX, &MouseY, &press);
+		mouse(MouseX, MouseY);
+		if (mouse_press(238,125 ,417 ,165) == 1) {
+			delay(100);
+			cleardevice();
+			return 1;
+		}
+		if (mouse_press(238, 195, 417, 235) == 1) {
+			delay(100);
+			cleardevice();
+			return 2;
+		}
+	}
 }
