@@ -249,10 +249,15 @@ int welcome(char *s){
 lzz写的
 ********************/
 void place(int(*map_type)[13+3], struct unit my[],struct unit en[],int num_my,int num_en){
-	int i,j,k,l,x,y,half,judge;
+	int i,j,k,l,x,y,half,judge,now_loc=0,tmp=0;
 	for(i=1;i<=num_my;i++){
 		info(my[i],1,0,my,0);
 		save_bk_mou(MouseX,MouseY);
+		setfillstyle(SOLID_FILL,GREEN);
+		/*bar(528,428,636,474);
+		puthz(545,433,"结束部署",16,18,WHITE);
+		puthz(545,453,"该类单位",16,18,WHITE);*/
+		tmp=0;
 		for(j=1;j<=my[i].num;j++){
 			setfillstyle(SOLID_FILL,BLACK);
 			bar(123,383,519,480);
@@ -261,12 +266,30 @@ void place(int(*map_type)[13+3], struct unit my[],struct unit en[],int num_my,in
 			bar(524,275,640,315);
 			puthz(528,285,"剩余",16,18,WHITE);
 			puthz(586,285,"个单位",16,18,WHITE);
-			puthz(555,305,"待部署",16,18,WHITE);
+			puthz(555,305,"可部署",16,18,WHITE);
 			gotoxy(72,19);
 			printf("%d",my[i].num-j+1);
 			while(1){
 				clrmous(MouseX,MouseY);
 				while(1){
+					/*if(mouse_in(528,428,636,474)&&now_loc==0){
+						clrmous(MouseX,MouseY);
+						delay(50);
+						now_loc=1;
+						setfillstyle(SOLID_FILL,LIGHTGREEN);
+						bar(528,428,636,474);
+						puthz(545,433,"结束部署",16,18,WHITE);
+						puthz(545,453,"该类单位",16,18,WHITE);
+					}
+					if((!mouse_in(528,428,636,474))&&now_loc==1){
+						clrmous(MouseX,MouseY);
+						delay(50);
+						now_loc=0;
+						setfillstyle(SOLID_FILL,GREEN);
+						bar(528,428,636,474);
+						puthz(545,433,"结束部署",16,18,WHITE);
+						puthz(545,453,"该类单位",16,18,WHITE);
+					}*/
 					newmouse(&MouseX,&MouseY,&press);
 					mouse(MouseX,MouseY);
 					if(mouse_press(1,1,520,360)==1){
@@ -274,7 +297,13 @@ void place(int(*map_type)[13+3], struct unit my[],struct unit en[],int num_my,in
 						delay(100);
 						break;
 					}
+					/*if(mouse_press(528,428,636,474)==1){
+						delay(100);
+						tmp=1;
+						break;
+					}*/
 				}
+				if(tmp) break;
 				judge=1;
 				if(my[i].type!=3&&my[i].type!=4&&map_type[y][x]==1){
 					judge=0;
@@ -335,12 +364,17 @@ void place(int(*map_type)[13+3], struct unit my[],struct unit en[],int num_my,in
 					break;
 				}
 			}
+			/*if(tmp){
+				my[i].num=j-1;
+				break;
+			}*/
 			clrmous(MouseX,MouseY);
 			if(my[i].type!=4&&my[i].type!=5) puthz(my[i].x[j],my[i].y[j],my[i].name,16,17,WHITE);
 			if(my[i].type==4) puthz(my[i].x[j],my[i].y[j],"运输",16,17,WHITE);
 			if(my[i].type==5) puthz(my[i].x[j],my[i].y[j],"支援",16,17,WHITE);
 			save_bk_mou(MouseX,MouseY);
 		}
+		if(tmp) continue;
 	}
 }
 
