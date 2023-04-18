@@ -8,16 +8,14 @@ lzzÐ´µÄ
 void print_atk(int x, int y, int xx, int yy) {
 	void* buff;
 	int size;
-	
 	int nx, ny;
 	int lx, ly;
 	int i;
-	int hz = 8;
-	
+	int hz = 10;
 	size=imagesize(x-10,y-10,x+10,y+10);
 	buff=malloc(size);
-	if(buff!=NULL) getimage(x-10,y-10,x+10,y+10,buff);
-	
+	getimage(x-10,y-10,x+10,y+10,buff);
+	delay(200);
 	setfillstyle(SOLID_FILL, RED);
 	pieslice(x, y, 0, 360, 5);
 	for (i = 1; i <= hz; i++) {
@@ -25,29 +23,20 @@ void print_atk(int x, int y, int xx, int yy) {
 		ny = (int)(y + (yy - y) / (double)hz * i);
 		lx = (int)(x + (xx - x) / (double)hz * (i - 1));
 		ly = (int)(y + (yy - y) / (double)hz * (i - 1));
-		
-		setwritemode(XOR_PUT);
 		putimage(lx-10,ly-10,buff,COPY_PUT);
 		free(buff);
-		setwritemode(COPY_PUT);
 		size=imagesize(nx-10,ny-10,nx+10,ny+10);
 		buff=malloc(size);
-		if(buff!=NULL) getimage(nx-10,ny-10,nx+10,ny+10,buff);
-		
+		getimage(nx-10,ny-10,nx+10,ny+10,buff);
 		setfillstyle(SOLID_FILL, RED);
 		pieslice(nx, ny, 0, 360, 5);
-		if(i==1) delay(200);
+		if (i == 1) delay(200);
 		delay(50);
 	}
-	
-	setwritemode(XOR_PUT);
 	putimage(xx-10,yy-10,buff,COPY_PUT);
 	free(buff);
-	setwritemode(COPY_PUT);
-	size=imagesize(x-10,y-10,x+10,y+10);
-	buff=malloc(size);
-	if(buff!=NULL) getimage(xx -15, yy - 21, xx + 21, yy + 20,buff);
-	
+	buff = malloc(size);
+	getimage(xx -15, yy - 21, xx + 21, yy + 20,buff);
 	setcolor(RED);
 	setlinestyle(SOLID_LINE, 0, THICK_WIDTH);
 	line(xx - 3, yy + 15, xx + 2, yy + 9);
@@ -80,12 +69,9 @@ void print_atk(int x, int y, int xx, int yy) {
 	line(xx - 2, yy - 1, xx - 6, yy + 6);
 	line(xx - 6, yy + 5, xx - 2, yy);
 	line(xx - 2, yy, xx - 1, yy + 11);
-	delay(200);
-	
-	setwritemode(XOR_PUT);
+	delay(300);
 	putimage(xx-15, yy-21, buff, COPY_PUT);
 	free(buff);
-	setwritemode(COPY_PUT);
 }
 
 
