@@ -1143,7 +1143,7 @@ void  print_my(struct unit my[], int num_my) {
 	int i, j;
 	for (i = 1; i <= num_my; i++) {
 		for (j = 1; j <= my[i].num; j++) {
-			if (my[i].hp[j] <= 0 || my[i].oil[j] <= 0) continue;
+			if (my[i].hp[j] <= 0 || my[i].oil[j] <= 0 || my[i].x[j] == 0) continue;
 			if (my[i].ported[j]) continue;
 			if (my[i].type != 4 && my[i].type != 5) puthz(my[i].x[j], my[i].y[j], my[i].name, 16, 17, WHITE);
 			if (my[i].type == 4) puthz(my[i].x[j], my[i].y[j], "ÔËÊä", 16, 17, WHITE);

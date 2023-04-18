@@ -353,11 +353,11 @@ int myturn(int (*map_type)[13+3],struct unit my[],struct unit en[],int num_my,in
 								if(en[i].hp[j]<=0||en[i].type==5) continue;
 								if(en[i].a[j]==x&&en[i].b[j]==y){
 									print_atk(my[now_type].x[now_num]+20,my[now_type].y[now_num]+10,en[i].x[j]+20,en[i].y[j]+10);
-									/*clrmous(MouseX,MouseY);
+									clrmous(MouseX,MouseY);
 									delay(100);
 									print_map(map_type);
 									print_my(my,num_my);
-									print_en(en);*/
+									print_en(en);
 									en[i].hp[j]-=my[now_type].atk;
 									if(en[1].hp[1]<=0) return 1;
 								}
